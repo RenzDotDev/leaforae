@@ -7,7 +7,7 @@ function Header() {
     <>
         <header>
             <section className="logo-con">
-                <img src="public/Leaforae Logo.png" alt="" />
+                <img src="/Leaforae Logo.png" alt="" />
                 <h1>Leaforaé</h1>
             </section>
 
