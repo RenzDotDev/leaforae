@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 import '../style/heroSection.css'
 
@@ -24,6 +25,12 @@ function HeroSection() {
               <p>Explore now</p>
               <i className="fa-solid fa-arrow-right"></i>
             </button>
+          </div>
+
+          {/* Action Container */}
+          <div className="action-con">
+            <Link to={"/Product"}>Product</Link>
+            <Link to={"/Product"}>Product</Link>
           </div>
         </section>
 

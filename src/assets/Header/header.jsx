@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useMatch, useResolvedPath } from 'react-router-dom';
 
 import '../Header/header.css';
 
@@ -31,15 +31,12 @@ function Header() {
 
 // Create custom link
 function CustomLink({to, linkText}) {
-    const path = window.location.pathname;
     let className = "";
 
-    if (path === to) {
-        className = "active-link";
-    }
-
+    const resolvedPath = useResolvedPath(to)
+    const isActive = useMatch({path: resolvedPath.pathname, end: true});
     return (
-        <Link to={to} className={className}>{linkText}</Link>
+        <Link to={to} className={isActive ? "active-link" : ""}>{linkText}</Link>
     );
 }
 
