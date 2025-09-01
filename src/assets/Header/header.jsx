@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 import '../Header/header.css';
 
@@ -13,10 +14,10 @@ function Header() {
             </section>
 
             <nav className="nav-con">
-                <CustomLink href={"/"} linkText={"Home"} />
-                <CustomLink href={"/Product"} linkText={"Product"} />
-                <CustomLink href={"/Blog"} linkText={"Blog"} />
-                <CustomLink href={"/Contact"} linkText={"Contact"} />
+                <CustomLink to={"/"} linkText={"Home"} />
+                <CustomLink to={"/Product"} linkText={"Product"} />
+                <CustomLink to={"/Blog"} linkText={"Blog"} />
+                <CustomLink to={"/Contact"} linkText={"Contact"} />
             </nav>
 
             <button className="cart-btn">
@@ -29,16 +30,16 @@ function Header() {
 }
 
 // Create custom link
-function CustomLink({href, linkText}) {
+function CustomLink({to, linkText}) {
     const path = window.location.pathname;
     let className = "";
 
-    if (path === href) {
+    if (path === to) {
         className = "active-link";
     }
 
     return (
-        <a href={href} className={className}>{linkText}</a>
+        <Link to={to} className={className}>{linkText}</Link>
     );
 }
 
