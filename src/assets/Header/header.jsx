@@ -31,8 +31,6 @@ function Header() {
 
 // Create custom link
 function CustomLink({to, linkText}) {
-    let className = "";
-
     const resolvedPath = useResolvedPath(to)
     const isActive = useMatch({path: resolvedPath.pathname, end: true});
     return (
