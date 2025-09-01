@@ -19,7 +19,6 @@ header {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     align-items: center;
-    border: 2px solid;
 }
 
 /* Logo Container */
@@ -53,8 +52,7 @@ header .nav-con a {
     transition-duration: 0.2s;
 }
 header .nav-con .active-link {
-    font-weight: 600;
-    border-bottom: 2px solid var(--dark-green);
+    font-weight: 700;
     color: var(--dark-green);
 }
 header .nav-con a:hover {

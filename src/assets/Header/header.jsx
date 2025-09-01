@@ -3,8 +3,7 @@ import React from 'react'
 import '../Header/header.css';
 
 function Header() {
-    let path = window.location.pathname;
-    
+
   return (
     <>
         <header>
@@ -14,19 +13,33 @@ function Header() {
             </section>
 
             <nav className="nav-con">
-                <a href="/" className={"link " + path === "/" ? "active" : ""}>Home</a>
-                <a href="/Product" className={"link " + path === "/Product" ? "active" : ""}>Products</a>
-                <a href="/Blog" className={"link " + path === "/Blog" ? "active" : ""}>Blog</a>
-                <a href="/Contact" className={"link " + path === "/Contact" ? "active" : ""}>Contact</a>
+                <CustomLink href={"/"} linkText={"Home"} />
+                <CustomLink href={"/Product"} linkText={"Product"} />
+                <CustomLink href={"/Blog"} linkText={"Blog"} />
+                <CustomLink href={"/Contact"} linkText={"Contact"} />
             </nav>
 
             <button className="cart-btn">
-                <i class="fa-solid fa-cart-shopping"></i>
+                <i className="fa-solid fa-cart-shopping"></i>
                 <p className="cart-item-count">0</p>
             </button>
         </header>
     </>
   )
+}
+
+// Create custom link
+function CustomLink({href, linkText}) {
+    const path = window.location.pathname;
+    let className = "";
+
+    if (path === href) {
+        className = "active-link";
+    }
+
+    return (
+        <a href={href} className={className}>{linkText}</a>
+    );
 }
 
 export default Header
