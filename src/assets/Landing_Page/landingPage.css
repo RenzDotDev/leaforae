@@ -1,0 +1,9 @@
+.landing-page-con {
+    width: 100dvw;
+    height: fit-content;
+    max-width: 1440px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 10dvh 90dvh repeat(3, 100dvh) 10dvh;
+}

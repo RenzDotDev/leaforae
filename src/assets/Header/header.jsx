@@ -1,8 +1,10 @@
 import React from 'react'
 
-import "/src/assets/Landing_Page/style/header.css";
+import '../Header/header.css';
 
 function Header() {
+    let path = window.location.pathname;
+    
   return (
     <>
         <header>
@@ -12,10 +14,10 @@ function Header() {
             </section>
 
             <nav className="nav-con">
-                <a href="" className="active-link">Home</a>
-                <a href="" className="">Products</a>
-                <a href="" className="">Blog</a>
-                <a href="" className="">Contact</a>
+                <a href="/" className={"link " + path === "/" ? "active" : ""}>Home</a>
+                <a href="/Product" className={"link " + path === "/Product" ? "active" : ""}>Products</a>
+                <a href="/Blog" className={"link " + path === "/Blog" ? "active" : ""}>Blog</a>
+                <a href="/Contact" className={"link " + path === "/Contact" ? "active" : ""}>Contact</a>
             </nav>
 
             <button className="cart-btn">
