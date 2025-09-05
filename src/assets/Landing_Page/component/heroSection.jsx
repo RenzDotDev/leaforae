@@ -26,21 +26,6 @@ function HeroSection() {
               </Link>
             </div>
           </div>
-
-
-          {/* Action Container */}
-          <div className="action-con">
-            <Link to={"/Product"} className='plant-health-btn'>
-              <img src="plant-image6.png" alt="" />
-              <p className='plant-healt-txt'>Plants for Health</p>
-              <i className="fa-solid fa-arrow-right"></i>
-            </Link>
-            <Link to={"/Product"} className='plant-interior-btn'>
-              <img src="plant-image5.png" alt="" />
-              <p className='plant-healt-txt'>Plants for Interior</p>
-              <i className="fa-solid fa-arrow-right"></i>
-            </Link>
-          </div>
         </section>
 
         {/* Image Container */}

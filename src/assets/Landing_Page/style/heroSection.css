@@ -11,6 +11,7 @@
     grid-template-columns: repeat(2, 1fr);
     padding: 12px;
     align-items: center;
+    height: 90dvh;
 }
 
 /* Text and Actions Container */
@@ -18,6 +19,7 @@
     display: flex;
     flex-direction: column;
     gap: 32px;
+    align-items: center;
     justify-content: center;
     height: 85%;
 }
@@ -141,8 +143,8 @@
 .hero-section-con .image-con::before {
     content: '';
     position: absolute;
-    height: 95%;
-    width: 80%;
+    height: 85%;
+    width: 70%;
     background-color: var(--light-green);
     opacity: 90%;
     z-index: -1;
@@ -150,13 +152,100 @@
 .hero-section-con .image-con::after {
     content: '';
     position: absolute;
-    height: 90%;
-    width: 80%;
+    height: 80%;
+    width: 70%;
     background-color: transparent;
     border: 2px solid var(--dark-green);
     rotate: -8deg;
     z-index: -2;
 }
 .hero-section-con .image-con img {
-    width: 90%;
+    width: 86%;
+}
+
+/* 1024px (Laptop Screens) */
+@media screen and (max-width: 1024px) {
+    .hero-section-con {
+        height: 100%;
+        aspect-ratio: 5.5/4;
+    }
+    .hero-section-con .text-and-action-con .text-con > p:nth-child(1) {
+        font-size: 80px;
+        line-height: 100px;
+    }
+
+    .hero-section-con .text-and-action-con .text-con > p:nth-child(2) {
+        font-size: 16px;
+    }
+
+    .hero-section-con .text-and-action-con .text-con .button-con .btn {
+        font-size: 16px;
+        padding: 10px 30px;
+    }
+
+    
+}
+
+/* 768px (Tablet Screen) */
+@media screen and (max-width: 768px) {
+    .hero-section-con {
+        display: flex;
+        flex-direction: column-reverse;
+        height: 90dvh;
+        text-align: center;
+    }
+
+    .hero-section-con .image-con img {
+        width: 50%;
+    }
+
+    .hero-section-con .text-and-action-con .text-con .button-con {
+        justify-content: center;
+    }
+
+    .hero-section-con .text-and-action-con .text-con > p:nth-child(1) {
+        font-size: 60px;
+    }
+
+    .hero-section-con .text-and-action-con .text-con > p:nth-child(2) {
+        font-size: 18px;
+    }
+
+    .hero-section-con .text-and-action-con .text-con .button-con .btn {
+        font-size: 16px;
+        padding: 12px 28px;
+    }
+
+    .hero-section-con .text-and-action-con .action-con {
+        align-items: end;
+        flex-grow: 0;
+        margin-top: 30px;
+        justify-content: center;
+    }
+
+    .hero-section-con .image-con::before {
+        width: 30%;
+    }
+    .hero-section-con .image-con::after {
+        width: 30%;
+    }
+
+    .hero-section-con .text-and-action-con .action-con .plant-health-btn img {
+        height: 150px;
+        left: -0px;
+    }
+
+    .hero-section-con .text-and-action-con .action-con .plant-interior-btn img {
+        height: 120px;
+        left: 0;
+    }
+
+    
+}
+
+/* 425px (Phone View) */
+@media screen and (max-width: 425px) {
+    .hero-section-con {
+        text-align: center;
+    }
 }

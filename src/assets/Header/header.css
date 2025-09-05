@@ -19,6 +19,7 @@ header {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     align-items: center;    
+    padding-inline: 12px;
 }
 
 /* Logo Container */

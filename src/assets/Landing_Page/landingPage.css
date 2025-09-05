@@ -13,5 +13,12 @@
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 10vh 90vh repeat(3, 100vh) 5vh;
+    grid-template-rows: 10vh auto;
+    padding: 24px;
+}
+
+@media screen and (max-width: 425px) {
+    .landing-page-con {
+        padding: 4px;
+    }
 }
