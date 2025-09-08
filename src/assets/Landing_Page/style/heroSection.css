@@ -12,6 +12,7 @@
     padding: 12px;
     align-items: center;
     height: 90dvh;
+    max-height: 700px;
 }
 
 /* Text and Actions Container */
