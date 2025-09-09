@@ -13,6 +13,7 @@
     align-items: center;
     height: 90dvh;
     max-height: 700px;
+    width: 100%;
 }
 
 /* Text and Actions Container */
@@ -188,12 +189,13 @@
 }
 
 /* 768px (Tablet Screen) */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 834px) {
     .hero-section-con {
         display: flex;
         flex-direction: column-reverse;
         height: 90dvh;
         text-align: center;
+        width: 100dvw;
     }
 
     .hero-section-con .image-con img {
@@ -248,5 +250,17 @@
 @media screen and (max-width: 425px) {
     .hero-section-con {
         text-align: center;
+    }
+
+    .hero-section-con .text-and-action-con .text-con .button-con .btn p {
+        font-size: 14px;
+    }
+
+    .hero-section-con .text-and-action-con .text-con > p:nth-child(1) {
+        font-size: 50px;
+        line-height: 56px;
+    }
+    .hero-section-con .text-and-action-con .text-con > p:nth-child(2) {
+        font-size: 14px;
     }
 }

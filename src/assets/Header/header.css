@@ -96,8 +96,113 @@ header .cart-btn .cart-item-count {
     font-size: 10px;
     transition-duration: 0.2s;
 }
-header .cart-btn:active {
+header .cart-btn:active,
+header .hamburger-icon:active,
+#side-nav .nav-link-con .close-btn:active {
     transform: scale(0.90);
     transition-duration: 0.2s;
 }
 
+/* Hamburger Button */
+header .hamburger-icon {
+    display: none;
+}
+
+/* Side Navigation Bar */
+.side-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100dvw;
+    display: flex;
+    z-index: 100;
+    backdrop-filter: blur(3px);
+    justify-content: end;
+}
+.side-nav .nav-link-con {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    background-color: var(--dark-green);
+    padding: 24px;
+    gap: 24px;
+}
+.side-nav .nav-link-con a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.visible {
+    display: flex;
+}
+
+.hidden {
+    display: none;
+}
+
+.side-nav .nav-link-con .close-btn {
+    width: fit-content;
+    aspect-ratio: 1;
+    width: 40px;
+    border-radius: 50%;
+    background-color: var(--white);
+    border: none;
+    font-size: 16px;
+    align-self: end;
+}
+
+/* 834px (Tablet View) */
+@media screen and (max-width: 834px) {
+    header {
+        width: 100dvw;
+        display: flex;
+        gap: 24px;
+    }
+    header .logo-con {
+        flex-grow: 1;
+    }
+    header .hamburger-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--dark-green);
+        width: fit-content;
+        aspect-ratio: 1;
+        width: 40px;
+        border-radius: 50%;
+        border: none;
+        font-size: 16px;
+        transition-duration: 0.2s;
+    }
+    header .hamburger-icon i {
+        color: var(--white);
+    }
+    
+    header .nav-con {
+        display: none;
+    }
+}
+
+/* 425px (Phone View) */
+@media screen and (max-width: 425px) {
+    header {
+        gap: 8px;
+    }
+    header .logo-con img {
+        height: 50px;
+    }
+    header .logo-con h1 {
+        font-size: 20px;
+        color: var(--dark-green);
+    }
+    header .cart-btn,
+    header .hamburger-icon {
+        width: 35px;
+    }
+    header .cart-btn .fa-cart-shopping,
+    header .hamburger-icon {
+        font-size: 13px;
+    }
+}

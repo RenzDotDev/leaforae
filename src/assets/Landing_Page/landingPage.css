@@ -14,7 +14,6 @@
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 10vh auto;
-    padding: 24px;
 }
 
 @media screen and (max-width: 425px) {

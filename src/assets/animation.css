@@ -1,0 +1,25 @@
+
+
+@keyframes slideLeft {
+    form {
+        transform: translateX(-200px);
+        opacity: 0%;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 100%;
+    }
+}
+
+
+/* Slide Right */
+@keyframes slideRight {
+    from {
+        transform: translate(0);
+        opacity: 100%;
+    }
+    to {
+        transform: translate(200px);
+        opacity: 0%;
+    }
+}
