@@ -186,7 +186,7 @@ header .hamburger-icon {
 }
 
 /* 425px (Phone View) */
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 450px) {
     header {
         gap: 8px;
     }
@@ -204,5 +204,9 @@ header .hamburger-icon {
     header .cart-btn .fa-cart-shopping,
     header .hamburger-icon {
         font-size: 13px;
+    }
+
+    .side-nav .nav-link-con {
+        width: 60%;
     }
 }

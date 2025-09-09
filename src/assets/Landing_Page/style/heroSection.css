@@ -247,7 +247,7 @@
 }
 
 /* 425px (Phone View) */
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 450px) {
     .hero-section-con {
         text-align: center;
     }
