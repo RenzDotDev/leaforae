@@ -35,7 +35,7 @@
     max-width: 600px;
     position: relative;
 }
-.blog-section-con .blog .blog-img::before {
+/* .blog-section-con .blog .blog-img::before {
     position: absolute;
     content: "";
     background-color: var(--light-green);
@@ -43,7 +43,7 @@
     height: 60%;
     max-height: 450px;
     max-width: 350px;
-}
+} */
 
 /* Blog Text Container */
 .blog-section-con .blog .blog-text-con {
@@ -98,12 +98,12 @@
 
 /* 1024px (Laptop View) */
 @media screen and (max-width: 1024px) {
-    .blog-section-con .blog .blog-img::before {
+    /* .blog-section-con .blog .blog-img::before {
         width: 20%;
         height: 40%;
         max-height: 320px;
         max-width: 400px;
-    }
+    } */
 
     .blog-section-con .blog .blog-text-con .blog-title {
         line-height: 60px;
@@ -117,9 +117,9 @@
 
 /* 768px (Tablet View) */
 @media screen and (max-width: 834px) {
-    .blog-section-con .blog .blog-img::before {
+    /* .blog-section-con .blog .blog-img::before {
         height: 30%;
-    }
+    } */
 
     .blog-section-con .blog-con2 .blog-img {
         overflow-x: hidden;
@@ -148,7 +148,7 @@
     .blog-section-con .blog-con2 .blog-img {
         grid-area: img2;
     }
-    .blog-section-con .blog .blog-img::before {
+    /* .blog-section-con .blog .blog-img::before {
         position: absolute;
         content: "";
         background-color: var(--light-green);
@@ -156,6 +156,14 @@
         height: 50%;
         max-height: 450px;
         max-width: 350px;
+    } */
+
+    .blog-section-con .blog-con2 .blog-img img {
+        width: 120%;
+    }
+
+     .blog-section-con .blog .blog-text-con .blog-title {
+        line-height: 40px;
     }
 
     .blog-section-con .blog .blog-text-con .blog-btn {
