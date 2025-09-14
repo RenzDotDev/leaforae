@@ -1,33 +1,60 @@
-import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom';
-import Axios from 'axios'
-
-import "../style/productSection.css";
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
+import "../style/productSection.css"
 
 function ProductSection() {
-    const [plant, setPlant] = useState({
-      name: "",
-      url: "",
-      price: "",
-      numOfSold: ""
-    })
+  const succulentPlants = [
+    { name: "Jade plant", url: "https://perenual.com/storage/species_image/2193_crassula_ovata/medium/33253726791_980c738a1e_b.jpg"},
+    { name: "Aloe vera", url: "https://perenual.com/storage/species_image/728_aloe_vera/medium/52619084582_6ebcfe6a74_b.jpg"},
+    { name: "Torch plant", url: "https://perenual.com/storage/species_image/719_aloe_aristata/medium/23962599232_fdc4070814_b.jpg"}
+  ]
 
-    useEffect(() => {
-      Axios.get("https://perenual.com/api/v2/species-list?key=sk-93g568b0122c4f2f012082")
-      .then((res) => {
-        setPlant({
-          name: "Plant Name",
-          url: "https://perenual.com/storage/species_image/2193_crassula_ovata/medium/33253726791_980c738a1e_b.jpg",
-          numOfSold: "12"
-        })
-      })
-    }, [])
+  const fernPlants = [
+    { name: "Maidenhair fern", url: "https://perenual.com/storage/species_image/543_adiantum_capillus-veneris/medium/49636882698_cb4fa4c685_b.jpg"},
+    { name: "Tulip", url: "https://upload.wikimedia.org/wikipedia/commons/1/1a/Tulip_-_floriade_canberra.jpg"},
+    { name: "Sunflower", url: "https://upload.wikimedia.org/wikipedia/commons/4/40/Sunflower_sky_backdrop.jpg"}
+  ]
+
+  const flowerPlants = [
+    { name: "Rose", url: "https://upload.wikimedia.org/wikipedia/commons/b/bf/Red_rose.jpg"},
+    { name: "Tulip", url: "https://upload.wikimedia.org/wikipedia/commons/1/1a/Tulip_-_floriade_canberra.jpg"},
+    { name: "Sunflower", url: "https://upload.wikimedia.org/wikipedia/commons/4/40/Sunflower_sky_backdrop.jpg"}
+  ]
+
+  const treePlants = [
+    { name: "Rose", url: "https://upload.wikimedia.org/wikipedia/commons/b/bf/Red_rose.jpg"},
+    { name: "Tulip", url: "https://upload.wikimedia.org/wikipedia/commons/1/1a/Tulip_-_floriade_canberra.jpg"},
+    { name: "Sunflower", url: "https://upload.wikimedia.org/wikipedia/commons/4/40/Sunflower_sky_backdrop.jpg"}
+  ]
+
+  const herbPlants = [
+    { name: "Rose", url: "https://upload.wikimedia.org/wikipedia/commons/b/bf/Red_rose.jpg"},
+    { name: "Tulip", url: "https://upload.wikimedia.org/wikipedia/commons/1/1a/Tulip_-_floriade_canberra.jpg"},
+    { name: "Sunflower", url: "https://upload.wikimedia.org/wikipedia/commons/4/40/Sunflower_sky_backdrop.jpg"}
+  ]
+
+  const [activeCategory, setActiveCategory] = useState("succulents")
+  const [plants, setPlants] = useState(succulentPlants)
+
+  // update plants whenever category changes
+  const handleCategoryChange = (category) => {
+    setActiveCategory(category)
+    if (category === "succulents") setPlants(succulentPlants)
+    if (category === "ferns") setPlants(fernPlants)
+    if (category === "flowers") setPlants(flowerPlants)
+    if (category === "trees") setPlants(treerPlants)
+    if (category === "herbs") setPlants(herbsPlants)
+    // add ferns / trees / herbs here later
+  }
 
   return (
     <div className='product-section-con'>
       <Header />
-      <CategoryList />
-      <PlantCardList plant={plant}/>
+      <CategoryList 
+        activeCategory={activeCategory} 
+        onCategoryChange={handleCategoryChange} 
+      />
+      <PlantCardList plants={plants}/>
     </div>
   )
 }
@@ -35,72 +62,52 @@ function ProductSection() {
 export default ProductSection
 
 // ========================================
-// =========== INNER COMPONENTS =========== 
+// =========== INNER COMPONENTS ===========
 // ========================================
 
-// Header
 function Header() {
   return (
-    <>
-      <section className="product-header">
-        <p className="product-text">Choose our best plants!</p>
-        <Link to={"/Product"} className='view-all-btn'>
-          <p>View All</p>
+    <section className="product-header">
+      <p className="product-text">Choose our best plants!</p>
+      <Link to={"/Product"} className='view-all-btn'>
+        <p>View All</p>
+        <i className="fa-solid fa-arrow-right"></i>
+      </Link>
+    </section>
+  )
+}
+
+function CategoryList({ activeCategory, onCategoryChange }) {
+  return (
+    <section className='category-list'>
+      <button onClick={() => onCategoryChange("succulents")} className={activeCategory === "succulents" ? "active-category" : ""}>Succulents</button>
+      <button onClick={() => onCategoryChange("ferns")} className={activeCategory === "ferns" ? "active-category" : ""}>Ferns</button>
+      <button onClick={() => onCategoryChange("flowers")} className={activeCategory === "flowers" ? "active-category" : ""}>Flowers</button>
+      <button onClick={() => onCategoryChange("trees")} className={activeCategory === "trees" ? "active-category" : ""}>Trees</button>
+      <button onClick={() => onCategoryChange("herbs")} className={activeCategory === "herbs" ? "active-category" : ""}>Herbs</button>
+    </section>
+  )
+}
+
+function PlantCardList({ plants }) {
+  return (
+    <section className='plant-card-list'>
+      {plants.map((plant, index) => (
+        <PlantCard key={index} url={plant.url} name={plant.name}/>
+      ))}
+    </section>
+  )
+}
+
+function PlantCard({ url, name }) {
+  return (
+    <section className='plant-card'>
+      <div className="plant-box" style={{ backgroundImage: `url(${url})` }}>
+        <Link to={"/Product"} className='plant-btn'>
+          <p className="plant-name">{name}</p>
           <i className="fa-solid fa-arrow-right"></i>
         </Link>
-      </section>
-    </>
+      </div>
+    </section>
   )
 }
-
-// Category List
-function CategoryList() {
-  const [activeCategory, setActiveCategory] = useState("");
-
-  const handleClick = (category) => {
-    setActiveCategory(category)
-  }
-
-  return(
-    <>
-      <section className='category-list'>
-        <button onClick={() => handleClick("succulents")} className={(activeCategory === "succulents") ? "active-category" : ""}>Succulents</button>
-        <button onClick={() => handleClick("ferns")} className={(activeCategory === "ferns") ? "active-category" : ""}>Ferns</button>
-        <button onClick={() => handleClick("flowers")} className={(activeCategory === "flowers") ? "active-category" : ""}>Flowers</button>
-        <button onClick={() => handleClick("trees")} className={(activeCategory === "trees") ? "active-category" : ""}>Trees</button>
-        <button onClick={() => handleClick("herbs")} className={(activeCategory === "herbs") ? "active-category" : ""}>Herbs</button>
-      </section>
-    </>
-  )
-}
-
-// Plant Card List
-function PlantCardList({ plant }) {
-  return(
-    <>
-      <section className='plant-card-list'>
-        <PlantCard url={plant.url} name={plant.name} numOfSold={plant.numOfSold}/>
-        <PlantCard url={plant.url} name={plant.name} numOfSold={plant.numOfSold}/>
-        <PlantCard url={plant.url} name={plant.name} numOfSold={plant.numOfSold}/>
-      </section>
-    </>
-  )
-}
-
-// Plant Card
-function PlantCard({url, name, numOfSold}) {
-  return(
-    <>
-      <section className='plant-card'>
-        <div className="plant-box" style={{backgroundImage: `url(${url})`}}>
-          <p className="plant-name">{name}</p>
-          <p>{`Sold ${numOfSold}`}</p>
-        </div>
-      </section>
-    </>
-  )
-}
-
-// =========================================
-// =========== UTILITY FUNCTIONS =========== 
-// =========================================
