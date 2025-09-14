@@ -9,5 +9,6 @@
 footer {
     display: grid;
     place-content: center;
-    margin-block: 40px;
+    margin-top: 40px;
+    padding: 12px;
 }
