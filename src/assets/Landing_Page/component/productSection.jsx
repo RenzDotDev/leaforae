@@ -42,8 +42,8 @@ function ProductSection() {
     if (category === "succulents") setPlants(succulentPlants)
     if (category === "ferns") setPlants(fernPlants)
     if (category === "flowers") setPlants(flowerPlants)
-    if (category === "trees") setPlants(treerPlants)
-    if (category === "herbs") setPlants(herbsPlants)
+    if (category === "trees") setPlants(treePlants)
+    if (category === "herbs") setPlants(herbPlants)
     // add ferns / trees / herbs here later
   }
 
