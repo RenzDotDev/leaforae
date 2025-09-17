@@ -13,7 +13,6 @@
     border-radius: 12px;
     display: flex;
     flex-direction: column;
-    overflow-y: scroll;
     gap: 12px;
     
 }
@@ -52,4 +51,62 @@
 .filter-header-con button:active {
     transform: scale(0.98);
     transition-duration: 0.2s;
+}
+
+/* Category Container */
+.category-con {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    height: fit-content;
+    padding-block: 12px;
+    border-bottom: 1px solid var(--white);
+}
+.category-con .category-list {
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+}
+.category-con .category-list .category-item {
+    display: flex;
+    height: fit-content;
+    gap: 8px;
+}
+.category-con .category-list .category-item input {
+    cursor: pointer;
+}
+.category-con .category-list .category-item label {
+    cursor: pointer;
+}
+
+/* Price Container */
+.price-slider-con {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.price-slider-con .range-input-con {
+    width: 100%;
+    gap: 8px;
+    display: flex;
+}
+.price-slider-con .range-input-con .range-input {
+    display: flex;
+    flex-direction: column;
+}
+.price-slider-con .range-input-con .range-input input {
+    width: 100%;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: none;
+}
+.slider-con {
+    display: flex;
+    gap: 4px;
+}
+.slider-con label {
+    color: var(--white);
+}
+.slider-con input {
+    flex-grow: 1;
 }
