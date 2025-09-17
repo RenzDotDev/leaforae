@@ -6,7 +6,12 @@
     --dark-green: #3A5A40;
 }
 
+body {
+    background-color: #f2f2f2;
+}
+
 .product-page-con {
+    background-color: #f2f2f2;
     width: 100dvw;
     height: 100dvh;
     max-width: 1440px;

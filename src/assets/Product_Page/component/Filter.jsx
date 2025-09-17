@@ -31,17 +31,24 @@ function FilterHeader() {
 
 function CategoryContainer() {
     return(
-        <section className="category-con">
-            <p className='category-text' style={{color: "#f2f2f2", fontWeight: "500", fontSize: "16px"}}>Categories</p>
-            <div className="category-list">
-                <CategoryCheckBox checkBoxName="Bulb"/>
-                <CategoryCheckBox checkBoxName="Flower"/>
-                <CategoryCheckBox checkBoxName="Shrub"/>
-                <CategoryCheckBox checkBoxName="Fern"/>
-                <CategoryCheckBox checkBoxName="Tree"/>
-                <CategoryCheckBox checkBoxName="Succulents"/>
-            </div>
-        </section>
+        <>
+            <section className="category-con">
+                <p className='category-text' style={{color: "#f2f2f2", fontWeight: "500", fontSize: "16px"}}>Light Requirements</p>
+                <div className="category-list">
+                    <CategoryCheckBox checkBoxName="Full Sun"/>
+                    <CategoryCheckBox checkBoxName="Full Shade"/>
+                </div>
+            </section>
+            <section className="category-con">
+                <p className='category-text' style={{color: "#f2f2f2", fontWeight: "500", fontSize: "16px"}}>Watering Needs</p>
+                <div className="category-list">
+                    <CategoryCheckBox checkBoxName="Frequent"/>
+                    <CategoryCheckBox checkBoxName="Average"/>
+                    <CategoryCheckBox checkBoxName="Minimum"/>
+                    <CategoryCheckBox checkBoxName="None"/>
+                </div>
+            </section>
+        </>
     )
     
 }

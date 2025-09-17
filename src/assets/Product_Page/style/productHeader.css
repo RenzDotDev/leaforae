@@ -46,6 +46,7 @@
     outline: none;
     padding: 4px;
     flex-grow: 1;
+    background-color: transparent;
 }
 
 /* Icon List */

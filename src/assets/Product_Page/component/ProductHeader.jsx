@@ -29,6 +29,7 @@ function Logo() {
 
 // Search Bar
 function SearchBar() {
+    
     return(
         <section className="search-bar-con">
             <input type="text" name="" id="" placeholder='Enter plant name...' />
