@@ -22,7 +22,7 @@ function FilterHeader() {
                 <p className='filter-header-text'>Filters</p>
                 <button>
                     <p>Clear all filters</p>
-                    <i class="fa-solid fa-xmark"></i>
+                    <i className="fa-solid fa-xmark"></i>
                 </button>
             </section>
         </>
