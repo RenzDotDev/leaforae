@@ -8,12 +8,18 @@
 
 .product-page-con {
     width: 100dvw;
-    height: fit-content;
+    height: 100dvh;
     max-width: 1440px;
     margin: 0 auto;
-
-    /* May change */
+    padding: 12px;
     display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 10dvh 90dvh ;
+    grid-template-columns: 20% 80%;
+    grid-template-rows: 10% 10% repeat(2,1fr);
+    grid-template-areas:
+        "header header"
+        "filter appliedFilter"
+        "filter productList"
+        "filter productList"
+    ;
+    gap: 8px;
 }

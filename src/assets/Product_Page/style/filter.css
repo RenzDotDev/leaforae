@@ -1,0 +1,55 @@
+:root {
+    --text-color: #404040;
+    --white: #FFFEF2;
+    --light-green: #D0DBC2;
+    --green: #7A9352;
+    --dark-green: #3A5A40;
+}
+
+.filter-con {
+    grid-area: filter;
+    padding: 24px;
+    background-color: var(--dark-green);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    gap: 12px;
+    
+}
+::-webkit-scrollbar {
+    display: none;
+}
+
+/* Filter Header */
+.filter-header-con {
+    display: flex;
+    align-items: end;
+    border-bottom: 1px solid var(--white);
+    padding-block: 8px;
+}
+.filter-header-con .filter-header-text {
+    font-size: 23px;
+    font-weight: 600;
+    color: var(--white);
+    flex-grow: 1;
+}
+.filter-header-con button {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+.filter-header-con button i {
+    color: var(--white);
+}
+.filter-header-con button p {
+    color: var(--white);
+    transition-duration: 0.2s;
+}
+.filter-header-con button:active {
+    transform: scale(0.98);
+    transition-duration: 0.2s;
+}

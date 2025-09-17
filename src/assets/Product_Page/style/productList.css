@@ -1,0 +1,13 @@
+:root {
+    --text-color: #404040;
+    --white: #FFFEF2;
+    --light-green: #D0DBC2;
+    --green: #7A9352;
+    --dark-green: #3A5A40;
+}
+
+.product-list-con {
+    border: 2px solid;
+    grid-area: productList;
+}
+

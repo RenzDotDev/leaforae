@@ -1,14 +1,20 @@
 import React from 'react'
 
-import Header from "../Header/header.jsx";
+import ProductHeader from './component/ProductHeader';
+import AppliedFilter from './component/AppliedFilter';
+import Filter from './component/Filter';
+import ProductList from './component/ProductList';
 
 import '../Product_Page/productPage.css';
+
 
 function ProductPage() {
   return (
     <div className="product-page-con">
-      <Header />
-      <p className='landing-page-text'>This is product page</p>
+      <ProductHeader />
+      <AppliedFilter />
+      <Filter />
+      <ProductList />
     </div>
   )
 }

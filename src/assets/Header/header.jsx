@@ -21,10 +21,10 @@ function Header() {
         <>
             {/* Header */}
             <header>
-                <section className="logo-con">
+                <Link to={"/"} className="logo-con">
                     <img src="/Leaforae Logo.png" alt="" />
                     <h1>Leaforaé</h1>
-                </section>
+                </Link>
 
                 <nav className="nav-con">
                     <CustomLink to={"/"} linkText={"Home"} />
