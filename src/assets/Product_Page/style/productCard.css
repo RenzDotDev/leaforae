@@ -14,12 +14,8 @@
     display: flex;
     flex-direction: column;
     cursor: pointer;
-    background-size: 120%;
+    background-size: cover;
     background-position: center;
-    transition-duration: 0.2s;
-}
-.product-list-con .product-card:hover {
-    background-size: 130%;
     transition-duration: 0.2s;
 }
 .product-list-con .product-card::before {

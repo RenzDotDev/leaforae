@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 import "../style/productList.css"
 
-function ProductCard({ key, url, rating, name, price }) {
+function ProductCard({ url, rating, name, price }) {
     const [isFavorite, setIsFavorite] = useState(false);
 
     const handleFavoriteClick = () => {
@@ -11,7 +11,7 @@ function ProductCard({ key, url, rating, name, price }) {
     }
 
     return (
-        <section key={key} className='product-card' style={{ backgroundImage: `url('${url}')`, backgroundRepeat: "no-repeat" }}>
+        <section className='product-card' style={{ backgroundImage: `url('${url}')`, backgroundRepeat: "no-repeat" }}>
             <div className="product-card-header">
                 <div className="rating-con">
                     <i className="fa-solid fa-star"></i>
