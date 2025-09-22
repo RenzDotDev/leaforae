@@ -1,13 +1,13 @@
-import React from 'react'
-import Header from '../../Header/Header'
+import React from "react";
+import Header from "../../Header/Header";
 
 function BlogPage() {
   return (
     <div>
-        <Header />
-        BlogPage
+      <Header />
+      BlogPage
     </div>
-  )
+  );
 }
 
-export default BlogPage
+export default BlogPage;

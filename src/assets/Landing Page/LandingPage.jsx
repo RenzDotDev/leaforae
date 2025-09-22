@@ -1,13 +1,13 @@
-import React from 'react'
-import Header from '../Header/Header'
+import React from "react";
+import Header from "../Header/Header";
 
 function LandingPage() {
   return (
-    <div className=''>
-        <Header />
-        LandingPage
+    <div className="max-w-[1440px] w-full h-full">
+      <Header />
+      Landing Page
     </div>
-  )
+  );
 }
 
-export default LandingPage
+export default LandingPage;

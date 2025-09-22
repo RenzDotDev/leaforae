@@ -1,24 +1,24 @@
 @import "tailwindcss";
 
+@theme {
+  --color-white: #f2f2f2;
+  --color-lightGreen: #d0dbc2;
+  --color-green: #7a9352;
+  --color-darkGreen: #3a5a40;
+  --color-text-color: #404040;
+}
+
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    color: #404040;
-    font-family: 'Poppins', sans-serif;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 
-body, html {
-    scroll-behavior: smooth;
+body,
+html {
+  scroll-behavior: smooth;
 }
 
-.container {
-    width: 100dvw;
-    height: fit-content;
-    max-width: 1440px;
-    margin: 0 auto;
-}
-
-::-webkit-scrollbar {
-    display: none;
+.active {
+  font-weight: bold;
+  color: #404040;
 }

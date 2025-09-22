@@ -1,13 +1,13 @@
-import React from 'react'
-import Header from '../Header/Header'
+import React from "react";
+import Header from "../Header/Header";
 
 function PaymentPage() {
   return (
     <div>
-        <Header />
-        PaymentPage
+      <Header />
+      PaymentPage
     </div>
-  )
+  );
 }
 
-export default PaymentPage
+export default PaymentPage;
