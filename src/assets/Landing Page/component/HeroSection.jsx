@@ -6,7 +6,7 @@ function HeroSection() {
     <div className="grid w-full h-full grid-rows-auto">
       <Header />
       <section className="p-3 flex flex-col items-center justify-between text-center h-[90dvh]">
-        <img src="/plant-image2.png" alt="plant image" className="h-[70%]" />
+        <img src="/plant-image2.png" alt="plant image" className="h-[60%]" />
         <p className="text-5xl font-semibold">
           Bring Home the <span className="text-darkGreen">Green</span>
         </p>
