@@ -56,7 +56,7 @@ export default function Header() {
             exit={{ opacity: 0, x: 100 }}
             className={
               isActive
-                ? "flex flex-col gap-3 h-[90dvh] bg-darkGreen w-[80dvh] absolute top-12 right-0 rounded-lg p-6"
+                ? "flex flex-col gap-3 h-[90dvh] bg-darkGreen w-[80dvw] absolute top-12 right-0 rounded-lg p-6"
                 : "hidden"
             }
           >
