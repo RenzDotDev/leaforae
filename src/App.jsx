@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import './App.css'
 
-import LandingPage from "./assets/Landing_Page/landingPage.jsx";
-import ProductPage from "./assets/Product_Page/productPage.jsx";
-import BlogPage from "./assets/Blog_Page/blogPage.jsx";
-import ContactPage from "./assets/Contact_Page/contactPage.jsx";
+import LandingPage from './assets/Landing Page/LandingPage';
+import ProductPage from './assets/Product Page/component/ProductPage';
+import BlogPage from './assets/Blog Page/component/BlogPage';
+import ContactPage from './assets/Contact Page/component/ContactPage';
+
 import { Route, Routes } from 'react-router-dom';
 
 function App() {
