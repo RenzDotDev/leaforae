@@ -10,7 +10,7 @@ export default function Header() {
   };
 
   return (
-    <header className="flex w-full gap-2 relative">
+    <header className="flex w-full items-center gap-2 relative">
       <motion.div
         initial={{
           opacity: 0,
@@ -34,7 +34,7 @@ export default function Header() {
       </motion.div>
 
       {/* Navbar for larger screens */}
-      <ul className="hidden gap-3">
+      <ul className="hidden gap-3 sm:flex">
         <CustomLink to="/">Home</CustomLink>
         <CustomLink to="/Product">Product</CustomLink>
         <CustomLink to="/Blog">Blog</CustomLink>
@@ -72,16 +72,41 @@ export default function Header() {
             <CustomLink to="/Contact" style={"text-lg text-white"}>
               Contact
             </CustomLink>
+            <motion.button
+              initial={{ opacity: 0, x: 100 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.1 }}
+              exit={{ opacity: 0, x: 100 }}
+              whileTap={{ scale: 0.95 }}
+              className="flex items-center justify-center gap-1 bg-white p-2 rounded-sm"
+            >
+              <p>My Cart</p>
+              <i className="fa-solid fa-shopping-cart"></i>
+            </motion.button>
           </motion.ul>
         )}
       </AnimatePresence>
+
+      {/* Shopping Cart Button */}
       <motion.button
+        initial={{
+          opacity: 0,
+          y: 100,
+        }}
+        animate={{
+          opacity: 1,
+          y: 0,
+          transition: {
+            delay: 0.1,
+          },
+        }}
         className="hidden bg-darkGreen aspect-square h-[40px] rounded-full items-center justify-center cursor-pointer sm:flex"
         whileTap={{ scale: 0.9 }}
       >
-        <i className="fa-solid fa-shopping-cart"></i>
+        <i className="fa-solid fa-shopping-cart text-white"></i>
       </motion.button>
 
+      {/* Hamburger Button */}
       <motion.button
         className="bg-darkGreen aspect-square h-[40px] rounded-full flex items-center justify-center cursor-pointer"
         initial={{
@@ -92,7 +117,7 @@ export default function Header() {
           opacity: 1,
           y: 0,
           transition: {
-            delay: 0.1,
+            delay: 0.15,
           },
         }}
         whileTap={{ scale: 0.9 }}

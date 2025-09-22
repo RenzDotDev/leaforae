@@ -1,12 +1,12 @@
 import React from "react";
-import Header from "../Header/Header";
+import HeroSection from "./component/HeroSection";
 
 function LandingPage() {
   return (
-    <div className="max-w-[1440px] w-full h-full">
-      <Header />
-      Landing Page
-    </div>
+    // Landing Page
+    <section>
+      <HeroSection></HeroSection>
+    </section>
   );
 }
 
