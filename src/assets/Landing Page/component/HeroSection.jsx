@@ -14,7 +14,7 @@ function HeroSection() {
             transition={{ delay: 0.2 }}
             src="/plant-image2.png"
             alt="plant image"
-            className="h-[50dvh]"
+            className="h-[45dvh]"
           />
         </div>
         <div className="flex flex-col gap-3">
