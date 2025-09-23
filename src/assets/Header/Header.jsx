@@ -184,13 +184,13 @@ export default function Header() {
         {/* Login Card Wrapper - To make blurred background */}
         {isLoginCardActive && (
           <motion.section
-            className="absolute top-0 left-0 backdrop-blur-[2px] w-full h-screen flex justify-center items-center p-3 text-center"
+            className="absolute top-0 left-0 backdrop-blur-[2px] w-[100dvw] h-screen flex justify-center items-center p-3 text-center"
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             exit={{ scale: 0 }}
           >
             {/* Actual Login card */}
-            <motion.section className="bg-darkGreen p-6 rounded-xl flex flex-col gap-5 sm:w-100">
+            <motion.section className="bg-darkGreen w-[90%] p-6 rounded-xl flex flex-col gap-5 sm:w-100">
               {/* X / Close Button */}
               <motion.button
                 className="w-fit self-end text-[clamp(12px,2vw,16px)] bg-white aspect-square p-2 rounded-full cursor-pointer flex items-center justify-between"
