@@ -10,7 +10,7 @@ import { Route, Routes } from "react-router-dom";
 
 function App() {
   return (
-    <div className="p-3 w-dvw h-dvh max-w-[1440px]">
+    <div className="w-dvw h-dvh max-w-[1440px] my-0 mx-auto relative">
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/Product" element={<ProductPage />} />

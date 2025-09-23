@@ -4,8 +4,8 @@ import HeroSection from "./component/HeroSection";
 function LandingPage() {
   return (
     // Landing Page
-    <section>
-      <HeroSection></HeroSection>
+    <section className="">
+      <HeroSection />
     </section>
   );
 }

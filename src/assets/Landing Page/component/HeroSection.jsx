@@ -6,7 +6,7 @@ function HeroSection() {
   return (
     <div className="grid w-full h-full grid-rows-auto">
       <Header />
-      <section className="p-3 flex flex-col items-center justify-between text-center h-[90dvh]">
+      {/* <section className="p-3 flex flex-col items-center justify-between text-center h-[90dvh]">
         <motion.img
           initial={{ opacity: 0, scale: 0 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -52,7 +52,7 @@ function HeroSection() {
             <i className="fa-solid fa-arrow-right"></i>
           </motion.button>{" "}
         </div>
-      </section>
+      </section> */}
     </div>
   );
 }
