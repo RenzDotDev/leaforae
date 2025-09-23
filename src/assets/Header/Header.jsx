@@ -1,7 +1,6 @@
 import { Link, useMatch, useResolvedPath } from "react-router-dom";
 import { motion, AnimatePresence, scale } from "motion/react";
 import { useState } from "react";
-import { faLess } from "@fortawesome/free-brands-svg-icons";
 
 export default function Header() {
   const [isActive, setIsActive] = useState(false);
@@ -185,7 +184,7 @@ export default function Header() {
         {/* Login Card Wrapper - To make blurred background */}
         {isLoginCardActive && (
           <motion.section
-            className="absolute top-0 left-0 backdrop-blur-[2px] w-screen h-screen flex justify-center items-center p-5 text-center"
+            className="absolute top-0 left-0 backdrop-blur-[2px] w-full h-screen flex justify-center items-center p-3 text-center"
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             exit={{ scale: 0 }}
@@ -194,7 +193,7 @@ export default function Header() {
             <motion.section className="bg-darkGreen p-6 rounded-xl flex flex-col gap-5 sm:w-100">
               {/* X / Close Button */}
               <motion.button
-                className="w-fit self-end bg-white aspect-square p-2 rounded-full cursor-pointer flex items-center justify-between"
+                className="w-fit self-end text-[clamp(12px,2vw,16px)] bg-white aspect-square p-2 rounded-full cursor-pointer flex items-center justify-between"
                 whileTap={{ scale: 0.9 }}
                 onClick={toggleLoginCard}
               >
@@ -203,10 +202,10 @@ export default function Header() {
 
               {/* Text Container */}
               <div className="flex flex-col gap-1">
-                <p className="text-white font-bold text-[clamp(1.5rem,2vw,2.5rem)]">
+                <p className="text-white font-bold text-xl">
                   Login to Your Account
                 </p>
-                <p className="text-white text-[clamp(0.75rem,1vw,1rem)">
+                <p className="text-white text-xs">
                   Access your orders, track deliveries, and grow your green
                   collection.
                 </p>
@@ -218,7 +217,7 @@ export default function Header() {
                 <div className="flex flex-col gap-1">
                   <label
                     htmlFor=""
-                    className="w-fit text-white text-[clamp(1rem,1vw,1rem)] font-semibold"
+                    className="w-fit text-white font-semibold text-sm"
                   >
                     Email
                   </label>
@@ -231,7 +230,7 @@ export default function Header() {
                 <div className="flex flex-col gap-1">
                   <label
                     htmlFor=""
-                    className="w-fit text-white text-[clamp(1rem,1vw,1rem)] font-semibold"
+                    className="w-fit text-white text-sm font-semibold"
                   >
                     Password
                   </label>
@@ -255,33 +254,33 @@ export default function Header() {
 
               {/* Login Button */}
               <motion.button
-                className="w-full bg-white p-3 rounded-lg font-semibold cursor-pointer text-[clamp(1rem,1vw,1rem)]"
+                className="w-full bg-white px-3 py-2 rounded-lg font-semibold cursor-pointer text-[clamp(1rem,1vw,1rem)]"
                 whileTap={{ scale: 0.95 }}
               >
                 Login
               </motion.button>
 
               {/* Other login choices */}
-              <p className="text-white">Or</p>
+              <p className="text-white text-xs">Or</p>
               <div className="flex flex-col gap-2">
                 <motion.button
                   className="flex items-center justify-center gap-1 bg-white p-3 rounded-lg"
                   whileTap={{ scale: 0.95 }}
                 >
                   <i className="fa-brands fa-google"></i>
-                  <p className="font-semibold">Login with Google</p>
+                  <p className="font-semibold text-sm">Login with Google</p>
                 </motion.button>
                 <motion.button
                   className="flex items-center justify-center gap-1 bg-white p-3 rounded-lg"
                   whileTap={{ scale: 0.95 }}
                 >
                   <i className="fa-brands fa-facebook-f"></i>
-                  <p className="font-semibold">Login with Facebook</p>
+                  <p className="font-semibold text-sm">Login with Facebook</p>
                 </motion.button>
               </div>
 
               {/* Sign up Link */}
-              <Link to={"/"} className="text-white cursor-default">
+              <Link to={"/"} className="text-white text-sm cursor-default">
                 Do not have an Account?{" "}
                 <span className="font-semibold underline underline-offset-3 cursor-pointer">
                   Sign up now!
