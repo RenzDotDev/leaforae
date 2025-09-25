@@ -37,3 +37,13 @@ html {
   border-radius: 24px;
   background-color: #404040;
 } */
+
+/* In your global CSS */
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}

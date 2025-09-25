@@ -5,8 +5,9 @@ import ProductSection from "./component/ProductSection";
 function LandingPage() {
   return (
     // Landing Page
-    <section className="grid place-items-center">
+    <section className="mx-auto max-w-[1440px] w-full">
       <HeroSection></HeroSection>
+      <ProductSection></ProductSection>
     </section>
   );
 }
