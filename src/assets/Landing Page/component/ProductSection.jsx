@@ -23,7 +23,7 @@ function HeaderText() {
 
 function CategoryList() {
   return (
-    <section className="no-scrollbar flex items-center gap-4 overflow-x-scroll h-full">
+    <section className="no-scrollbar flex items-center gap-4 overflow-x-scroll w-full h-full">
       <Category category={"Indoor"} />
       <Category category={"Outdoor"} />
       <Category category={"Flowers"} />
