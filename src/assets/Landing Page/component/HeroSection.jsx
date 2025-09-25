@@ -34,7 +34,7 @@ function MainContent() {
       <div className="absolute top-0 left-0 w-full h-full bg-linear-to-t from-darkGreen rounded-2xl z-1"></div>
       <div className="relative z-10 text-center flex flex-col gap-2 items-center justify-center pt-[30dvh]">
         <p className="text-4xl text-white font-semibold">
-          Find your best <br className="md:hidden" />
+          Find your best
           <span>Green</span> Companion
         </p>
         <p className="text-white text-sm">
