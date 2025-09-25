@@ -1,12 +1,11 @@
 import React from "react";
 import HeroSection from "./component/HeroSection";
+import BlogSection from "./component/BlogSection";
 
 function LandingPage() {
   return (
     // Landing Page
-    <section className="relative">
-      <HeroSection />
-    </section>
+    <section className="w-screen text-center">Landing Page</section>
   );
 }
 
