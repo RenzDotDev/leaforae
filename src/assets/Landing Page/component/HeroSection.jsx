@@ -2,7 +2,7 @@ import React from "react";
 
 function HeroSection() {
   return (
-    <section className="grid grid-rows-[auto_1fr] h-screen w-screen min-h-screen gap-2 p-3">
+    <section className="grid grid-rows-[auto_1fr] h-screen w-full min-h-screen gap-2 p-3">
       <Header />
       <MainContent />
     </section>
@@ -31,7 +31,7 @@ function Header() {
 function MainContent() {
   return (
     <section className="relative bg-[url('/HeroSectionImage.png')] bg-cover bg-center rounded-2xl p-3">
-      <div className="absolute top-0 left-0 w-full h-full bg-linear-to-t from-darkGreen rounded-2xl z-1"></div>
+      <div className="absolute top-0 left-0 w-full h-full bg-linear-to-t from-darkGreen rounded-2xl z-[1]"></div>
       <div className="relative z-10 text-center flex flex-col gap-2 items-center justify-center pt-[30dvh]">
         <p className="text-4xl text-white font-semibold">
           Find your best
