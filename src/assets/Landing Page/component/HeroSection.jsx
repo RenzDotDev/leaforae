@@ -2,7 +2,7 @@ import React from "react";
 
 function HeroSection() {
   return (
-    <section className="grid grid-rows-[auto_1fr] h-screen w-full min-h-screen gap-2 p-3">
+    <section className="grid grid-rows-[auto_1fr] h-screen w-screen min-h-screen gap-2 p-3">
       <Header />
       <MainContent />
     </section>
