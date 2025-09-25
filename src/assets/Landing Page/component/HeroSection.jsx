@@ -22,12 +22,13 @@ function HeroSection() {
 
         {/* Hero Section Image */}
         <div className="col-span-4 row-span-5 bg-[url('/HeroSectionImage.png')] bg-cover rounded-2xl relative">
-          <div className="absolute right-2 bottom-2 backdrop-blur-3xl rounded-full overflow-hidden">
-            <button className="flex gap-1 items-center bg-[#FFFFFF50] justify-center px-4 py-2 rounded-full">
-              <p className="text-sm">Shop Now</p>
-              <i className="fa-solid fa-arrow-right text-sm rotate-[-45deg]"></i>
-            </button>
-          </div>
+          <motion.button
+            whileTap={{ scale: 0.9 }}
+            className="flex gap-1 items-center bg-[#FFFFFF] justify-center px-4 py-2 rounded-full absolute right-2 bottom-2 cursor-pointer"
+          >
+            <p className="text-sm">Shop Now</p>
+            <i className="fa-solid fa-arrow-right text-sm rotate-[-45deg]"></i>
+          </motion.button>
         </div>
 
         {/* Product 1 */}
