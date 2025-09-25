@@ -1,11 +1,13 @@
 import React from "react";
 import HeroSection from "./component/HeroSection";
-import BlogSection from "./component/BlogSection";
+import ProductSection from "./component/ProductSection";
 
 function LandingPage() {
   return (
     // Landing Page
-    <section className="w-screen text-center">Landing Page</section>
+    <section className="grid place-items-center">
+      <HeroSection></HeroSection>
+    </section>
   );
 }
 
