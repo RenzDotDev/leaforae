@@ -8,7 +8,7 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
 function AboutUsSection() {
   return (
-    <div className="grid grid-cols-1 grid-rows-2 gap-3 p-3">
+    <div className="grid grid-cols-1 grid-rows-[1fr_auto] h-fit gap-3 p-3">
       <ImageSection />
       <AboutUsTextSection />
     </div>
@@ -31,7 +31,7 @@ function ImageSection() {
 
 function AboutUsTextSection() {
   return (
-    <section className="flex flex-col gap-2">
+    <section className="flex flex-col gap-2 h-fit">
       <h1 className="text-center text-[clamp(2rem,calc(3vw+1rem),3rem)] font-semibold">
         Why <span className="text-darkGreen">choose</span> us?
       </h1>
