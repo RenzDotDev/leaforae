@@ -1,11 +1,12 @@
 import React from "react";
+import { easeIn, motion } from "motion/react";
 import { useState } from "react";
 
 function ProductSection() {
   return (
     <div className="w-full h-full p-3 flex flex-col gap-">
       <HeaderText />
-      <CategoryList />
+      <ProductList />
     </div>
   );
 }
@@ -20,31 +21,65 @@ function HeaderText() {
   );
 }
 
-function CategoryList() {
+function ProductList() {
   const [activeCategory, setActiveCategory] = useState("Indoor");
-  const categories = ["Indoor", "Outdoor", "Flower", "Succulent", "Tree"];
+  const categories = [
+    {
+      category: "Indoor",
+      url: "/indoorPlant.jpg",
+    },
+    {
+      category: "Outdoor",
+      url: "/outdoorPlant.jpg",
+    },
+    {
+      category: "Flowers",
+      url: "/flowerPlant.jpg",
+    },
+    {
+      category: "Trees",
+      url: "/treePlant.jpg",
+    },
+  ];
 
   const handleSetActiveCategory = (category) => {
     setActiveCategory(category);
   };
 
   return (
-    <section className="no-scrollbar flex gap-2 w-ful overflow-scroll py-4">
-      {categories.map((category, index) => {
-        return (
-          <p
-            className={`cursor-pointer px-4 py-1 rounded-full ${
-              activeCategory === category
-                ? "text-white font-semibold border-2 bg-darkGreen"
-                : ""
-            }`}
-            onClick={() => handleSetActiveCategory(category)}
-            key={index}
-          >
-            {category}
-          </p>
-        );
-      })}
-    </section>
+    <>
+      {/* Category List */}
+      <section className="no-scrollbar grid grid-cols-1 gap-2 w-full py-4 justify-center">
+        {categories.map((category, index) => {
+          return (
+            <motion.section
+              initial={{ x: 100, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{
+                delay: 0.1 * index,
+                duration: 0.4,
+                animationTimingFunction: easeIn,
+              }}
+              className="relative aspect-[9/12] rounded-2xl p-3 w-full bg-cover bg-center flex items-end justify-end"
+              key={index}
+              style={{ backgroundImage: `url(${category.url})` }}
+            >
+              <div className="absolute bottom-0 left-0 bg-gradient-to-t rounded-2xl z-[0] from-darkGreen via-[#3a5a4030] to-[#00000010] h-full w-full "></div>
+              <motion.button
+                whileTap={{ scale: 0.9 }}
+                className="flex items-center gap-1 bg-white py-2 px-5 rounded-full z-[10]"
+              >
+                <p className="text-sm">{category.category}</p>
+                <i className="fa-solid fa-arrow-right rotate-[-45deg] text-sm"></i>
+              </motion.button>
+            </motion.section>
+          );
+        })}
+      </section>
+    </>
   );
+}
+
+function ProductCard() {
+  return <section></section>;
 }
