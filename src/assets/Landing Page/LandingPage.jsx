@@ -7,7 +7,7 @@ function LandingPage() {
     // Landing Page
     <section className="mx-auto max-w-[1440px] grid-rows-[auto] w-full h-[100dvh]">
       <HeroSection />
-      {/* <ProductSection /> */}
+      <ProductSection />
     </section>
   );
 }
