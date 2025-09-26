@@ -2,7 +2,7 @@ import React from "react";
 
 function HeroSection() {
   return (
-    <div className="p-3 w-full h-full grid grid-cols-1 grid-rows-[auto_1fr] gap-2 ">
+    <div className="w-full h-full p-3 grid grid-cols-1 grid-rows-[auto_1fr]">
       <Header />
       <MainContent />
     </div>
@@ -13,7 +13,7 @@ export default HeroSection;
 
 function Header() {
   return (
-    <header className="flex items-center justify-between w-full">
+    <header className="flex items-center justify-between w-full py-4">
       {/* Logo */}
       <section className="flex items-center w-fit">
         <img

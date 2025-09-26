@@ -9,7 +9,7 @@ import ContactPage from "./assets/Contact Page/ContactPage";
 
 function App() {
   return (
-    <div className="w-dvw h-dvh relative min-w-[320px]">
+    <div className="w-[100dvw] h-fit max-w-[1440px] mx-auto">
       <div className="">
         <Routes>
           <Route path="/" element={<LandingPage />} />

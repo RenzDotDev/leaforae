@@ -5,7 +5,7 @@ import ProductSection from "./component/ProductSection";
 function LandingPage() {
   return (
     // Landing Page
-    <section className="mx-auto max-w-[1440px] grid-rows-[auto] w-full h-[100dvh]">
+    <section className="w-full grid grid-cols-1 grid-rows-[repeat(5,100dvh)_10dvh]">
       <HeroSection />
       <ProductSection />
     </section>
