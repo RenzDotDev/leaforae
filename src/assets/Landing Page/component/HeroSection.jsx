@@ -2,26 +2,32 @@ import React from "react";
 
 function HeroSection() {
   return (
-    <section className="grid grid-rows-[auto_1fr] h-screen w-full min-h-screen gap-2 p-3">
+    <div className="p-3 w-full h-full grid grid-cols-1 grid-rows-[auto_1fr] gap-2">
       <Header />
       <MainContent />
-    </section>
+    </div>
   );
 }
 
 export default HeroSection;
 
-// Inner Components
-
 function Header() {
   return (
-    <header className="flex items-center justify-between px-1">
+    <header className="flex items-center justify-between w-full">
       {/* Logo */}
-      <section className="flex items-center">
-        <img src="/Leaforae Logo.png" alt="" className="h-[50px]" />
-        <p className="font-bold text-darkGreen py-4 text-2xl">Leaforaé</p>
+      <section className="flex items-center w-fit">
+        <img
+          src="/Leaforae Logo.png"
+          alt=""
+          className="h-[clamp(40px,10vw,50px)]"
+        />
+        <p className="text-[clamp(1.5rem,calc(2vw+0.75rem),2rem)] text-darkGreen font-bold">
+          Leaforaé
+        </p>
       </section>
-      <button className="bg-darkGreen aspect-square h-[30px] flex items-center justify-center rounded-full p-1">
+
+      {/* Hamburger Button */}
+      <button className="cursor-pointer bg-darkGreen aspect-square h-[30px] flex justify-center items-center rounded-full">
         <i className="fa-solid fa-bars text-white text-sm"></i>
       </button>
     </header>
@@ -30,25 +36,36 @@ function Header() {
 
 function MainContent() {
   return (
-    <section className="relative bg-[url('/HeroSectionImage.png')] bg-cover bg-center rounded-2xl p-3">
-      <div className="absolute top-0 left-0 w-full h-full bg-linear-to-t from-darkGreen rounded-2xl z-[1]"></div>
-      <div className="relative z-10 text-center flex flex-col gap-2 items-center justify-center pt-[30dvh]">
-        <p className="text-4xl text-white font-semibold">
-          Find your best
-          <span>Green</span> Companion
+    <section className="w-full h-full relative overflow-hidden rounded-2xl p-2 pt-[20vh] text-center">
+      {/* Background Image */}
+      <div className="absolute z-[1] h-full w-full top-0 left-0">
+        <img
+          src="/HeroSectionImage.png"
+          alt=""
+          className="h-full w-full object-cover object-center"
+        />
+      </div>
+      <div className="absolute top-0 left-0 bg-linear-to-t from-darkGreen to-[#00000025] w-full h-full z-[2]"></div>
+
+      {/* Text */}
+      <div className="relative z-10 flex flex-col items-center gap-2">
+        {/* Header */}
+        <p
+          className="text-[clamp(2rem,calc(3vw+1rem),3rem)] text-white font-semibold"
+          style={{
+            lineHeight: "40px",
+          }}
+        >
+          Find your best <br className="sm:hidden" /> Green Companion
         </p>
-        <p className="text-white text-sm">
-          Browse the best plants that suits you!
-        </p>
-        <div className="bg-white px-4 py-2 rounded-full flex gap-2 w-full">
-          <input
-            type="text"
-            placeholder="Search plants here"
-            className="text-sm outline-0 grow-1"
-          />
-          <div className="bg-darkGreen aspect-square h-[40px] flex items-center justify-center rounded-full">
-            <i className="fa-solid fa-search text-white h-fit w-fit"></i>
-          </div>
+
+        {/* Sub-Header */}
+        <p className="text-sm text-white">Browse plants that suits you!</p>
+
+        {/* Search Bar */}
+        <div className="w-full bg-white p-3 flex items-center rounded-full">
+          <input type="text" className="outline-0 grow-1 text-sm" />
+          <i className="fa-solid fa-search text-gray-500"></i>
         </div>
       </div>
     </section>

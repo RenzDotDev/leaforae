@@ -5,9 +5,9 @@ import ProductSection from "./component/ProductSection";
 function LandingPage() {
   return (
     // Landing Page
-    <section className="mx-auto max-w-[1440px] w-full">
-      <HeroSection></HeroSection>
-      <ProductSection></ProductSection>
+    <section className="mx-auto max-w-[1440px] grid-rows-[auto] w-full h-[100dvh]">
+      <HeroSection />
+      {/* <ProductSection /> */}
     </section>
   );
 }
