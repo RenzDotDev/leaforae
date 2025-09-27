@@ -8,7 +8,7 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
 function AboutUsSection() {
   return (
-    <div className="grid grid-cols-1 grid-rows-[1fr_auto] h-fit gap-3 p-3">
+    <div className="grid grid-cols-1 grid-rows-[1fr_auto] sm:grid-cols-2 h-fit gap-3 p-3 lg:max-h-screen">
       <ImageSection />
       <AboutUsTextSection />
     </div>

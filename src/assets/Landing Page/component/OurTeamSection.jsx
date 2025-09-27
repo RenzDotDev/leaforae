@@ -28,21 +28,16 @@ function OurTeamSection() {
       url: "/sophiaCruz.jpg",
       position: "Creative Director",
     },
-    {
-      name: "Rafaela Dela Torre",
-      url: "/danielReyes.jpg",
-      position: "Operations & Logistics Manager",
-    },
   ];
   return (
-    <div className="w-full h-fit p-3 grid grid-cols-1 grid-rows-[repeat(7,1fr)_auto] gap-3">
+    <div className="w-full h-fit p-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 grid-rows-[repeat(6,1fr)_auto] sm:grid-rows-[repeat(4,1fr)] lg:grid-rows-3 gap-3">
       {/* Header Text */}
-      <div className="aspect-[9/12] flex items-end">
+      <div className="aspect-[9/12] flex items-end lg:col-span-3 lg:aspect-auto lg:items-center lg:justify-end lg:text-right">
         <p
           style={{ lineHeight: "70px" }}
           className="text-[clamp(3.5rem,calc(3vw+1rem),3rem)] font-semibold text-text-color"
         >
-          The People Behind the Plants
+          The People Behind <br className="hidden lg:inline" /> the Plants
         </p>
       </div>
 
@@ -73,7 +68,13 @@ export default OurTeamSection;
 
 function MemberCard({ memberName, memberImage, memberPosition }) {
   return (
-    <section className="aspect-[9/12] flex flex-col rounded-2xl">
+    <section
+      className={
+        "aspect-[9/12] flex flex-col rounded-2xl " +
+        (memberName === "Miguel Santos" ? "lg:col-start-3" : "") +
+        (memberName === "Daniel Reyes" ? "lg:col-start-2 " : "")
+      }
+    >
       <div
         className="grow-1 w-full rounded-2xl p-3 flex items-end justify-end bg-cover bg-center"
         style={{ backgroundImage: `url(${memberImage})` }}
