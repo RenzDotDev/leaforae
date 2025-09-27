@@ -1,18 +1,67 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { motion, AnimatePresence } from "motion/react";
 
 function HeroSection() {
+  // const [isLoginActive, setIsLoginActive] = useState(false);
+  // const toggleLoginCard = () => {
+  //   setIsLoginActive((prev) => !prev);
+  // };
+
+  const [activeStatus, setActiveStatus] = useState({
+    loginCard: false,
+    navigationCard: false,
+  });
+
+  const toggleActiveComponent = (key) => {
+    setActiveStatus((prev) => ({
+      ...prev,
+      [key]: !prev[key],
+    }));
+  };
+
+  const toggleLoginCard = () => {
+    // Closes the navigation bar first
+    toggleActiveComponent("navigationCard");
+
+    setTimeout(() => {
+      toggleActiveComponent("loginCard");
+    }, 300);
+  };
+
   return (
-    <div className="w-full h-full p-3 grid grid-cols-1 grid-rows-[auto_1fr]">
-      <Header />
+    <div className="relative w-full h-full p-3 grid grid-cols-1 grid-rows-[auto_1fr]">
+      <Header
+        toggleNavigationBar={() => toggleActiveComponent("navigationCard")}
+      />
       <MainContent />
+
+      {/* Login Card Toggle */}
+      <AnimatePresence>
+        {activeStatus.loginCard && (
+          <LoginCard
+            toggleLoginCard={() => toggleActiveComponent("loginCard")}
+          />
+        )}
+      </AnimatePresence>
+
+      {/* Navigation Bar Toggle */}
+      <AnimatePresence>
+        {activeStatus.navigationCard && (
+          <NavigationBarCard
+            toggleNavigationBar={() => toggleActiveComponent("navigationCard")}
+            toggleLoginCard={() => toggleLoginCard()}
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 }
 
 export default HeroSection;
 
-function Header() {
+// Header
+function Header({ toggleNavigationBar }) {
   const links = [
     {
       name: "Home",
@@ -64,19 +113,23 @@ function Header() {
             </Link>
           );
         })}
-        <button className="bg-darkGreen text-white text-sm px-3 py-2 rounded-lg">
+        <button className="bg-darkGreen text-white text-sm px-3 py-2 rounded-lg cursor-pointer">
           Login Now
         </button>
       </nav>
 
       {/* Hamburger Button */}
-      <button className="cursor-pointer bg-darkGreen aspect-square h-[30px] sm:h-[35px] flex justify-center items-center rounded-full lg:hidden">
+      <button
+        onClick={toggleNavigationBar}
+        className="cursor-pointer bg-darkGreen aspect-square h-[30px] sm:h-[35px] flex justify-center items-center rounded-full lg:hidden"
+      >
         <i className="fa-solid fa-bars text-white text-sm sm:text-lg"></i>
       </button>
     </header>
   );
 }
 
+// Main Content
 function MainContent() {
   return (
     <section className="w-full h-full relative overflow-hidden rounded-2xl p-2 sm:px-5 pt-[20vh] text-center">
@@ -103,7 +156,9 @@ function MainContent() {
         </p>
 
         {/* Sub-Header */}
-        <p className="text-sm text-white">Browse plants that suits you!</p>
+        <p className="text-sm text-white lg:text-lg">
+          Browse plants that suits you!
+        </p>
 
         {/* Search Bar */}
         <div className="w-full max-w-[500px] bg-white p-4 gap-2 flex items-center rounded-full">
@@ -112,5 +167,269 @@ function MainContent() {
         </div>
       </div>
     </section>
+  );
+}
+
+// Navigation Bar Card
+function NavigationBarCard({ toggleNavigationBar, toggleLoginCard }) {
+  const links = [
+    {
+      name: "Home",
+      link: "",
+    },
+    {
+      name: "Products",
+      link: "/Product",
+    },
+    {
+      name: "Blogs",
+      link: "/Blog",
+    },
+    {
+      name: "Contact Us",
+      link: "Contact",
+    },
+  ];
+
+  return (
+    <motion.section
+      className="fixed top-0 left-0 bg-darkGreen w-full h-full z-20 p-4 flex flex-col"
+      initial={{ height: "0", opacity: 0 }}
+      animate={{ height: "100dvh", opacity: 1 }}
+      exit={{ height: "0", opacity: 0 }}
+      transition={{ duration: 0.2 }}
+    >
+      {/* Close Navigation Bar Button */}
+      <div className="w-full flex justify-end">
+        <motion.button
+          className="w-[35px] aspect-square bg-white rounded-full flex items-center justify-center"
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          exit={{ scale: 0, opacity: 0 }}
+          onClick={toggleNavigationBar}
+        >
+          <i className="fa-solid fa-xmark"></i>
+        </motion.button>
+      </div>
+
+      {/* Navigation Links */}
+      <nav className=" flex flex-col grow-1 gap-4 justify-center items-center">
+        {links.map((link, index) => {
+          return (
+            <Link
+              key={index}
+              to={link.link}
+              className={
+                "text-2xl w-fit text-white overflow-hidden  " +
+                (link.name === "Home" ? "font-bold px-1" : "")
+              }
+            >
+              <motion.p
+                initial={{ y: -100, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: -200, opacity: 0 }}
+                transition={{ delay: index * 0.05 }}
+              >
+                {link.name}
+              </motion.p>
+            </Link>
+          );
+        })}
+      </nav>
+
+      {/* Login Button */}
+      <motion.button
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0, opacity: 0 }}
+        whileTap={{ scale: 0.95 }}
+        onClick={toggleLoginCard}
+        className="bg-white w-full text-text-color font-semibold text-sm px-3 py-2 rounded-lg cursor-pointer"
+      >
+        Login Now
+      </motion.button>
+    </motion.section>
+  );
+}
+
+function LoginCard({ toggleLoginCard }) {
+  const [isHidden, setIsHidden] = useState(false);
+  const toggleShowPass = () => {
+    setIsHidden((prev) => !prev);
+  };
+  return (
+    <motion.section
+      initial={{ scale: 0 }}
+      animate={{ scale: 1 }}
+      exit={{ scale: 0 }}
+      transition={{ duration: 0.1 }}
+      className="fixed flex items-center justify-center backdrop-blur-sm w-full h-full top-0 left-0 z-20 p-5"
+    >
+      <form
+        action=""
+        className="bg-darkGreen p-4 rounded-2xl w-full max-w-[350px] text-center flex flex-col gap-4"
+      >
+        {/* Close Login Card Button */}
+        <div className="w-full flex justify-end">
+          <motion.button
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0 }}
+            transition={{ delay: 0.2 }}
+            whileTap={{ scale: 0.9 }}
+            onClick={toggleLoginCard}
+            className="aspect-square h-[35px] flex items-center justify-center rounded-full"
+          >
+            <i className="fa-solid fa-xmark text-white"></i>
+          </motion.button>
+        </div>
+
+        {/* Login Text Container */}
+        <div>
+          <motion.p
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0 }}
+            transition={{ delay: 0.22 }}
+            className="text-white text-[clamp(1.5rem,2vw,1.5rem)] font-semibold"
+          >
+            Log In to Leaforaé
+          </motion.p>
+          <motion.p
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0 }}
+            transition={{ delay: 0.24 }}
+            className="text-white text-sm"
+          >
+            Sign in and keep blooming with our latest plant finds.
+          </motion.p>
+        </div>
+
+        {/* Input Container */}
+        <div className="flex flex-col gap-2 w-full">
+          {/* Enail */}
+          <div className="flex flex-col items-start gap-1">
+            <motion.label
+              htmlFor="emailInput"
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0 }}
+              transition={{ delay: 0.26 }}
+              className="w-full text-start text-sm text-white font-[500]"
+            >
+              Email
+            </motion.label>
+            <motion.input
+              type="email"
+              name=""
+              id="emailInput"
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0 }}
+              transition={{ delay: 0.28 }}
+              className="w-full p-2 bg-white rounded-lg outline-0 text-sm"
+            />
+          </div>
+
+          {/* Password */}
+          <div className="flex flex-col items-start gap-1">
+            <motion.label
+              htmlFor="passwordInput"
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0 }}
+              transition={{ delay: 0.3 }}
+              className="w-full text-start text-sm text-white font-[500]"
+            >
+              Password
+            </motion.label>
+            <motion.div
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0 }}
+              transition={{ delay: 0.32 }}
+              className="flex  gap-1 bg-white w-full p-2 rounded-lg"
+            >
+              <input
+                type={isHidden ? "password" : "text"}
+                name=""
+                id="passwordInput"
+                className="outline-0 text-sm grow-1"
+              />
+              <motion.i
+                whileTap={{ scale: 0.9 }}
+                onClick={toggleShowPass}
+                className={`fa-solid ${
+                  isHidden ? "fa-eye-slash" : "fa-eye"
+                } text-gray-400 cursor-pointer`}
+              ></motion.i>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Login Button */}
+        <motion.button
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0 }}
+          transition={{ delay: 0.34 }}
+          whileTap={{ scale: 0.9 }}
+          onClick={toggleLoginCard}
+          className="bg-green p-2 text-white rounded-lg font-semibold"
+        >
+          Login
+        </motion.button>
+
+        {/* Other Login Option */}
+        <motion.p
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0 }}
+          transition={{ delay: 0.36 }}
+          className="text-white text-xs font-semibold"
+        >
+          Or
+        </motion.p>
+        <div className="flex flex-col gap-2">
+          <motion.div
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0 }}
+            transition={{ delay: 0.38 }}
+            whileTap={{ scale: 0.9 }}
+            className="flex gap-1 justify-center items-center bg-green p-2 rounded-lg"
+          >
+            <i className="fa-brands fa-google text-white"></i>
+            <p className="text-white font-semibold">Login with Google</p>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0 }}
+            transition={{ delay: 0.4 }}
+            whileTap={{ scale: 0.9 }}
+            className="flex gap-1 justify-center items-center bg-green p-2 rounded-lg w-full"
+          >
+            <i className="fa-brands fa-facebook text-white"></i>
+            <p className="text-white font-semibold">Login with Facebook</p>
+          </motion.div>
+        </div>
+
+        {/* Sign Up Page Link */}
+        <motion.p
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0 }}
+          transition={{ delay: 0.42 }}
+          className="text-white text-sm"
+        >
+          Don't have an account?{" "}
+          <span>
+            <Link className="text-blue-300 underline">Sign up here!</Link>
+          </span>
+        </motion.p>
+      </form>
+    </motion.section>
   );
 }

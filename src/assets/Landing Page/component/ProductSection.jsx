@@ -67,7 +67,7 @@ function ProductList() {
               <div className="absolute bottom-0 left-0 bg-gradient-to-t rounded-2xl z-[0] from-darkGreen via-[#3a5a4030] to-[#00000010] h-full w-full "></div>
               <motion.button
                 whileTap={{ scale: 0.9 }}
-                className="flex items-center gap-1 bg-white py-2 px-5 rounded-full z-[10]"
+                className="flex items-center gap-1 bg-white py-2 px-5 rounded-full z-[10] cursor-pointer"
               >
                 <p className="text-sm">{category.category}</p>
                 <i className="fa-solid fa-arrow-right rotate-[-45deg] text-sm"></i>

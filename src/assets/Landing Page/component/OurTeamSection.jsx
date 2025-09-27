@@ -30,7 +30,7 @@ function OurTeamSection() {
     },
   ];
   return (
-    <div className="w-full h-fit p-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 grid-rows-[repeat(6,1fr)_auto] sm:grid-rows-[repeat(4,1fr)] lg:grid-rows-3 gap-3">
+    <div className="w-full h-fit p-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 grid-rows-[repeat(6,1fr)_auto] sm:grid-rows-[repeat(3,1fr)_auto] lg:grid-rows-3 gap-3">
       {/* Header Text */}
       <div className="aspect-[9/12] flex items-end lg:col-span-3 lg:aspect-auto lg:items-center lg:justify-end lg:text-right">
         <p
@@ -54,8 +54,8 @@ function OurTeamSection() {
       })}
 
       {/* Supporting Text */}
-      <div className="text-start h-fit">
-        <p>
+      <div className="text-start h-full p-3 rounded-2xl sm:col-span-2 bg-green sm:px-5 lg:col-span-1">
+        <p className="text-white text-center lg:text-start">
           We're a team of growers, caretakers, and dreamers working together to
           bring nature closer to your home.
         </p>
@@ -79,22 +79,22 @@ function MemberCard({ memberName, memberImage, memberPosition }) {
         className="grow-1 w-full rounded-2xl p-3 flex items-end justify-end bg-cover bg-center"
         style={{ backgroundImage: `url(${memberImage})` }}
       >
-        <div className="w-fit h-fit flex gap-1 rounded-full ">
+        <div className="w-fit h-fit flex gap-1 rounded-full">
           <Link
             to={"https://instagram.com"}
-            className="bg-darkGreen aspect-square w-[35px] flex items-center justify-center rounded-full"
+            className="bg-darkGreen aspect-square w-[35px] flex items-center justify-center rounded-full cursor-pointer"
           >
             <i className="fa-brands fa-instagram text-white "></i>
           </Link>
           <Link
             to={"https://facebook.com"}
-            className="bg-darkGreen aspect-square w-[35px] flex items-center justify-center rounded-full"
+            className="bg-darkGreen aspect-square w-[35px] flex items-center justify-center rounded-full cursor-pointer"
           >
             <i className="fa-brands fa-facebook-f text-white "></i>
           </Link>
           <Link
             to={"https://twitter.com"}
-            className="bg-darkGreen aspect-square w-[35px] flex items-center justify-center rounded-full"
+            className="bg-darkGreen aspect-square w-[35px] flex items-center justify-center rounded-full cursor-pointer"
           >
             <i className="fa-brands fa-x-twitter text-white "></i>
           </Link>
