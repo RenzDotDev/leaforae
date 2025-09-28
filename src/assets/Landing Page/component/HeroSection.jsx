@@ -26,10 +26,12 @@ function HeroSection() {
 
   return (
     <div className="relative w-full h-full p-3 grid grid-cols-1 grid-rows-[auto_1fr]">
+      {/* Header */}
       <Header
         toggleNavigationBar={() => toggleActiveComponent("navigationCard")}
         toggleLoginCard={() => toggleActiveComponent("loginCard")}
       />
+      {/* Main Content */}
       <MainContent />
 
       {/* Login Card Toggle */}
@@ -161,7 +163,7 @@ function MainContent() {
         </p>
 
         {/* Search Bar */}
-        <div className="w-full max-w-[500px] bg-white p-4 gap-2 flex items-center rounded-full">
+        <div className="w-full max-w-[500px] bg-white p-3 gap-2 flex items-center rounded-full">
           <input type="text" className="outline-0 grow-1 text-sm" />
           <i className="fa-solid fa-search text-gray-500"></i>
         </div>
@@ -254,9 +256,15 @@ function NavigationBarCard({ toggleNavigationBar, toggleLoginCard }) {
 // Login Card
 function LoginCard({ toggleLoginCard }) {
   const [isHidden, setIsHidden] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const isDisabled = password.trim() === "" || email.trim() === "";
+
   const toggleShowPass = () => {
     setIsHidden((prev) => !prev);
   };
+
   return (
     <motion.section
       initial={{ scale: 0 }}
@@ -271,6 +279,7 @@ function LoginCard({ toggleLoginCard }) {
         exit={{ scale: 0 }}
         transition={{ duration: 0.1 }}
         action=""
+        onSubmit={(e) => e.preventDefault()}
         className="bg-darkGreen p-4 rounded-2xl w-full max-w-[350px] text-center flex flex-col gap-4"
       >
         {/* Close Login Card Button */}
@@ -304,7 +313,7 @@ function LoginCard({ toggleLoginCard }) {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0 }}
             transition={{ delay: 0.24 }}
-            className="text-white text-sm"
+            className="text-[#f2f2f290] text-sm"
           >
             Sign in and keep blooming with our latest plant finds.
           </motion.p>
@@ -315,16 +324,17 @@ function LoginCard({ toggleLoginCard }) {
           {/* Enail */}
           <div className="flex flex-col items-start gap-1">
             <motion.label
+              className="w-full text-start text-sm text-white font-[500]"
               htmlFor="emailInput"
               initial={{ opacity: 0, scale: 0 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0 }}
               transition={{ delay: 0.26 }}
-              className="w-full text-start text-sm text-white font-[500]"
             >
               Email
             </motion.label>
             <motion.input
+              className="w-full p-2 bg-white rounded-lg outline-0 text-sm"
               type="email"
               name=""
               id="emailInput"
@@ -332,7 +342,7 @@ function LoginCard({ toggleLoginCard }) {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0 }}
               transition={{ delay: 0.28 }}
-              className="w-full p-2 bg-white rounded-lg outline-0 text-sm"
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
 
@@ -349,17 +359,18 @@ function LoginCard({ toggleLoginCard }) {
               Password
             </motion.label>
             <motion.div
+              className="flex items-center gap-1 bg-white w-full p-2 rounded-lg"
               initial={{ opacity: 0, scale: 0 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0 }}
               transition={{ delay: 0.32 }}
-              className="flex items-center gap-1 bg-white w-full p-2 rounded-lg"
             >
               <input
+                className="outline-0 text-sm h-full w-full"
                 type={isHidden ? "password" : "text"}
                 name=""
                 id="passwordInput"
-                className="outline-0 text-sm h-full w-full"
+                onChange={(e) => setPassword(e.target.value)}
               />
               <motion.i
                 whileTap={{ scale: 0.9 }}
@@ -378,9 +389,9 @@ function LoginCard({ toggleLoginCard }) {
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0 }}
           transition={{ delay: 0.34 }}
-          whileTap={{ scale: 0.9 }}
-          onClick={toggleLoginCard}
-          className="bg-green p-2 text-white rounded-lg font-semibold"
+          whileTap={{ scale: 0.95, transition: { duration: 0.1 } }}
+          disabled={isDisabled}
+          className="bg-green p-2 text-white rounded-lg font-semibold cursor-pointer disabled:bg-[#7a935250] disabled:cursor-not-allowed disabled:text-[#f2f2f250]"
         >
           Login
         </motion.button>
@@ -430,7 +441,9 @@ function LoginCard({ toggleLoginCard }) {
         >
           Don't have an account?{" "}
           <span>
-            <Link className="text-blue-300 underline">Sign up here!</Link>
+            <Link to={"/Signup"} className="text-blue-300 underline">
+              Sign up here!
+            </Link>
           </span>
         </motion.p>
       </motion.form>
