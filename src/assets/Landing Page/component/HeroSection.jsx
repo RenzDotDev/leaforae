@@ -3,11 +3,6 @@ import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "motion/react";
 
 function HeroSection() {
-  // const [isLoginActive, setIsLoginActive] = useState(false);
-  // const toggleLoginCard = () => {
-  //   setIsLoginActive((prev) => !prev);
-  // };
-
   const [activeStatus, setActiveStatus] = useState({
     loginCard: false,
     navigationCard: false,
@@ -33,6 +28,7 @@ function HeroSection() {
     <div className="relative w-full h-full p-3 grid grid-cols-1 grid-rows-[auto_1fr]">
       <Header
         toggleNavigationBar={() => toggleActiveComponent("navigationCard")}
+        toggleLoginCard={() => toggleActiveComponent("loginCard")}
       />
       <MainContent />
 
@@ -61,7 +57,7 @@ function HeroSection() {
 export default HeroSection;
 
 // Header
-function Header({ toggleNavigationBar }) {
+function Header({ toggleNavigationBar, toggleLoginCard }) {
   const links = [
     {
       name: "Home",
@@ -102,18 +98,22 @@ function Header({ toggleNavigationBar }) {
             <Link
               key={index}
               to={link.link}
-              className={
-                "text-sm w-fit " +
-                (link.name === "Home"
-                  ? "text-darkGreen font-semibold px-1 border-b-2 border-b-darkGreen"
-                  : "")
-              }
+              className={`text-sm w-fit
+                ${
+                  link.name === "Home"
+                    ? "text-darkGreen font-semibold px-1 border-b-2 border-b-darkGreen"
+                    : ""
+                }`}
             >
               {link.name}
             </Link>
           );
         })}
-        <button className="bg-darkGreen text-white text-sm px-3 py-2 rounded-lg cursor-pointer">
+
+        <button
+          onClick={toggleLoginCard}
+          className="bg-darkGreen text-white text-sm px-3 py-2 rounded-lg cursor-pointer"
+        >
           Login Now
         </button>
       </nav>
@@ -219,10 +219,9 @@ function NavigationBarCard({ toggleNavigationBar, toggleLoginCard }) {
             <Link
               key={index}
               to={link.link}
-              className={
-                "text-2xl w-fit text-white overflow-hidden  " +
-                (link.name === "Home" ? "font-bold px-1" : "")
-              }
+              className={`
+                text-2xl w-fit text-white overflow-hidden 
+                ${link.name === "Home" ? "font-bold px-1" : ""}`}
             >
               <motion.p
                 initial={{ y: -100, opacity: 0 }}
@@ -252,6 +251,7 @@ function NavigationBarCard({ toggleNavigationBar, toggleLoginCard }) {
   );
 }
 
+// Login Card
 function LoginCard({ toggleLoginCard }) {
   const [isHidden, setIsHidden] = useState(false);
   const toggleShowPass = () => {
@@ -265,7 +265,11 @@ function LoginCard({ toggleLoginCard }) {
       transition={{ duration: 0.1 }}
       className="fixed flex items-center justify-center backdrop-blur-sm w-full h-full top-0 left-0 z-20 p-5"
     >
-      <form
+      <motion.form
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        exit={{ scale: 0 }}
+        transition={{ duration: 0.1 }}
         action=""
         className="bg-darkGreen p-4 rounded-2xl w-full max-w-[350px] text-center flex flex-col gap-4"
       >
@@ -278,7 +282,7 @@ function LoginCard({ toggleLoginCard }) {
             transition={{ delay: 0.2 }}
             whileTap={{ scale: 0.9 }}
             onClick={toggleLoginCard}
-            className="aspect-square h-[35px] flex items-center justify-center rounded-full"
+            className="aspect-square h-[35px] flex items-center justify-center rounded-full cursor-pointer"
           >
             <i className="fa-solid fa-xmark text-white"></i>
           </motion.button>
@@ -349,13 +353,13 @@ function LoginCard({ toggleLoginCard }) {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0 }}
               transition={{ delay: 0.32 }}
-              className="flex  gap-1 bg-white w-full p-2 rounded-lg"
+              className="flex items-center gap-1 bg-white w-full p-2 rounded-lg"
             >
               <input
                 type={isHidden ? "password" : "text"}
                 name=""
                 id="passwordInput"
-                className="outline-0 text-sm grow-1"
+                className="outline-0 text-sm h-full w-full"
               />
               <motion.i
                 whileTap={{ scale: 0.9 }}
@@ -429,7 +433,7 @@ function LoginCard({ toggleLoginCard }) {
             <Link className="text-blue-300 underline">Sign up here!</Link>
           </span>
         </motion.p>
-      </form>
+      </motion.form>
     </motion.section>
   );
 }
