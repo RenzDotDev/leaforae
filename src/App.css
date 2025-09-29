@@ -6,7 +6,7 @@
 @import "@fontsource/roboto/700.css";
 
 @theme {
-  --xs: 450px;
+  --breakpont-xs: 480px;
   --color-white: #f2f2f2;
   --color-lightGreen: #d0dbc2;
   --color-green: #7a9352;

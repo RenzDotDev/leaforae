@@ -7,6 +7,9 @@ import ProductPage from "./assets/Product Page/ProductPage";
 import BlogPage from "./assets/Blog Page/BlogPage";
 import ContactPage from "./assets/Contact Page/ContactPage";
 import SignUpPage from "./assets/Sign Up Page/SignUpPage";
+import CartPage from "./assets/Cart Page/CartPage";
+import FavoritePage from "./assets/Favorite Page/FavoritePage";
+import PaymentPage from "./assets/Payment Page/PaymentPage";
 
 function App() {
   return (
@@ -18,6 +21,9 @@ function App() {
           <Route path="/Blog" element={<BlogPage />} />
           <Route path="/Contact" element={<ContactPage />} />
           <Route path="/Signup" element={<SignUpPage />} />
+          <Route path="/Cart" element={<CartPage />} />
+          <Route path="/Favorite" element={<FavoritePage />} />
+          <Route path="/Payment" element={<PaymentPage />} />
         </Routes>
       </div>
     </div>
