@@ -10,22 +10,22 @@ import SignUpPage from "./assets/Sign Up Page/SignUpPage";
 import CartPage from "./assets/Cart Page/CartPage";
 import FavoritePage from "./assets/Favorite Page/FavoritePage";
 import PaymentPage from "./assets/Payment Page/PaymentPage";
+import ProfilePage from "./assets/Profile Page/ProfilePage";
 
 function App() {
   return (
     <div className="w-[100dvw] h-fit max-w-[1440px] mx-auto">
-      <div className="">
-        <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/Product" element={<ProductPage />} />
-          <Route path="/Blog" element={<BlogPage />} />
-          <Route path="/Contact" element={<ContactPage />} />
-          <Route path="/Signup" element={<SignUpPage />} />
-          <Route path="/Cart" element={<CartPage />} />
-          <Route path="/Favorite" element={<FavoritePage />} />
-          <Route path="/Payment" element={<PaymentPage />} />
-        </Routes>
-      </div>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/Product" element={<ProductPage />} />
+        <Route path="/Blog" element={<BlogPage />} />
+        <Route path="/Contact" element={<ContactPage />} />
+        <Route path="/Signup" element={<SignUpPage />} />
+        <Route path="/Cart" element={<CartPage />} />
+        <Route path="/Favorite" element={<FavoritePage />} />
+        <Route path="/Payment" element={<PaymentPage />} />
+        <Route path="/Profile" element={<ProfilePage />} />
+      </Routes>
     </div>
   );
 }
