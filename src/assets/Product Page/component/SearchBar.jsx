@@ -30,15 +30,25 @@ function SearchBar() {
   return (
     <>
       <section className="flex gap-2 w-full h-full items-center relative">
+        {/* Search Bar */}
         <div className="grow-1 flex items-center gap-1 p-2 rounded-lg border-2 border-darkGreen">
           <i className="fa-solid fa-search text-darkGreen"></i>
           <input
+            value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             type="text"
             placeholder="Search something..."
             className="grow-1 text-sm p-1 outline-0"
           />
+          <i
+            className="fa-solid fa-xmark text-darkGreen text-sm"
+            onClick={() => {
+              setIsSearchResultActive(false), setSearchQuery("");
+            }}
+          ></i>
         </div>
+
+        {/* Filter Button */}
         <button
           onClick={toggleFilter}
           className="bg-darkGreen size-[30px] rounded-full flex items-center justify-center"
@@ -76,13 +86,15 @@ function SearchResultContainer({ searchQuery }) {
   );
 
   return (
-    <section className="absolute top-[110%] z-30 border-2 border-darkGreen rounded-lg w-full flex flex-col max-h-[150px] overflow-y-auto">
+    <section className="absolute top-[110%] z-30 border-2 px-2 border-darkGreen rounded-lg w-full flex flex-col max-h-[150px] overflow-y-auto">
       {filteredPlants.length > 0 &&
         filteredPlants.map((plant, index) => {
           return <SearchResultItem key={index} resultTxt={plant.common_name} />;
         })}
 
-      {filteredPlants.length === 0 && <NoSearchResult />}
+      {filteredPlants.length === 0 && (
+        <NoSearchResult searchQuery={searchQuery} />
+      )}
     </section>
   );
 }
@@ -98,10 +110,18 @@ function SearchResultItem({ resultTxt }) {
 }
 
 // No search results
-function NoSearchResult() {
+function NoSearchResult({ searchQuery }) {
   return (
-    <div>
-      <p>No result found!</p>
+    <div className="h-150 w-full flex flex-col items-center justify-center p-3">
+      <img
+        src="/noSearchResultImage.png"
+        alt="No Result Illustration"
+        className="aspect-square w-25"
+      />
+      <p className="text-sm">
+        No result found! for{" "}
+        <span className="text-darkGreen">{searchQuery}</span>
+      </p>
     </div>
   );
 }
