@@ -6,7 +6,7 @@ import Filters from "./Filters";
 function SearchBar() {
   const [isSearchResultActive, setIsSearchResultActive] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const [isFilterActive, setIsFilterActive] = useState(true);
+  const [isFilterActive, setIsFilterActive] = useState(false);
 
   const toggleFilter = () => {
     setIsFilterActive((prev) => !prev);
@@ -51,7 +51,9 @@ function SearchBar() {
         )}
       </section>
 
-      {isFilterActive && <Filters toggleFilter={toggleFilter} />}
+      {isFilterActive && (
+        <Filters toggleFilter={toggleFilter} isActive={isFilterActive} />
+      )}
     </>
   );
 }
@@ -74,7 +76,7 @@ function SearchResultContainer({ searchQuery }) {
   );
 
   return (
-    <section className="absolute top-[110%] z-30 p-3 border-2 border-darkGreen rounded-lg w-full flex flex-col max-h-[150px] overflow-scroll">
+    <section className="absolute top-[110%] z-30 border-2 border-darkGreen rounded-lg w-full flex flex-col max-h-[150px] overflow-y-auto">
       {filteredPlants.length > 0 &&
         filteredPlants.map((plant, index) => {
           return <SearchResultItem key={index} resultTxt={plant.common_name} />;
@@ -88,7 +90,7 @@ function SearchResultContainer({ searchQuery }) {
 // Search Result Item
 function SearchResultItem({ resultTxt }) {
   return (
-    <div className="flex gap-2 items-center text-sm">
+    <div className="flex gap-2 items-center text-sm hover:bg-lightGreen sm:p-2 px-2 rounded-lg cursor-pointer">
       <i className="fa-solid fa-search"></i>
       <p className="py-1.5 text-sm">{resultTxt}</p>
     </div>

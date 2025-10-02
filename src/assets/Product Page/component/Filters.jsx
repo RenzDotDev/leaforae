@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function Filters({ toggleFilter }) {
+function Filters({ toggleFilter, isActive }) {
   const plantTypes = [
     "Indoor Plants",
     "Outdoor Plants",
@@ -28,7 +28,11 @@ function Filters({ toggleFilter }) {
   ];
 
   return (
-    <div className="absolute flex justify-end h-full w-full top-0 left-0 z-50 backdrop-blur-[2px] bg-[#00000050]">
+    <div
+      className={`${
+        isActive ? "flex" : "hidden"
+      } absolute flex justify-end h-full w-full top-0 left-0 z-50 backdrop-blur-[2px] bg-[#00000050]`}
+    >
       <div className="w-[75%] h-full flex flex-col gap-5 bg-darkGreen text-white p-3 overflow-scroll">
         {/* Header */}
         <div className="flex w-full justify-between items-center">
@@ -48,7 +52,7 @@ function Filters({ toggleFilter }) {
           </div>
         </div>
 
-        {/* Plang Type */}
+        {/* Plant Type */}
         <div>
           <p className="font-semibold">Placement Options</p>
           <div className="flex flex-col gap-1">
