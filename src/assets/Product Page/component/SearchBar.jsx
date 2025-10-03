@@ -2,19 +2,34 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 import Filters from "./Filters";
+import ProductList from "./ProductList";
 
 function SearchBar() {
   const [isSearchResultActive, setIsSearchResultActive] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [isFilterActive, setIsFilterActive] = useState(false);
+  const [plants, setPlants] = useState([]);
+
+  const filteredPlants = plants.filter((plant) =>
+    plant.common_name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   const toggleFilter = () => {
     setIsFilterActive((prev) => !prev);
   };
 
+  const toggleSearchResultContainer = () => {
+    setIsSearchResultActive((prev) => !prev);
+  };
+
+  useEffect(() => {
+    axios.get("/PlantData.json").then((res) => {
+      setPlants(res.data.data);
+    });
+  }, []);
+
   useEffect(() => {
     const timer = setTimeout(() => {
-      console.log(searchQuery);
       if (searchQuery === "") {
         setIsSearchResultActive(false);
       } else {
@@ -28,7 +43,8 @@ function SearchBar() {
   }, [searchQuery]);
 
   return (
-    <>
+    <section className="grid w-full h-full grid-rows-[10%_90%]">
+      {/* Search Bar */}
       <section className="flex gap-2 w-full h-full items-center relative">
         {/* Search Bar */}
         <div className="grow-1 flex items-center gap-1 p-2 rounded-lg border-2 border-darkGreen">
@@ -57,39 +73,48 @@ function SearchBar() {
         </button>
 
         {isSearchResultActive && (
-          <SearchResultContainer searchQuery={searchQuery} />
+          <SearchResultContainer
+            searchQuery={searchQuery}
+            onSetSearchQuery={setSearchQuery}
+            setIsSearchResultActive={toggleSearchResultContainer}
+            filteredPlants={filteredPlants}
+          />
         )}
+      </section>
+
+      {/* Product List */}
+      <section>
+        <ProductList />
       </section>
 
       {isFilterActive && (
         <Filters toggleFilter={toggleFilter} isActive={isFilterActive} />
       )}
-    </>
+    </section>
   );
 }
 
 export default SearchBar;
 
 // Search Result Container
-function SearchResultContainer({ searchQuery }) {
-  const [plants, setPlants] = useState([]);
-  const [isFound, setIsFound] = useState(false);
-
-  useEffect(() => {
-    axios.get("/PlantData.json").then((res) => {
-      setPlants(res.data.data);
-    });
-  }, []);
-
-  const filteredPlants = plants.filter((plant) =>
-    plant.common_name.toLowerCase().includes(searchQuery.toLowerCase())
-  );
-
+function SearchResultContainer({
+  searchQuery,
+  onSetSearchQuery,
+  setIsSearchResultActive,
+  filteredPlants,
+}) {
   return (
-    <section className="absolute top-[110%] z-30 border-2 px-2 border-darkGreen rounded-lg w-full flex flex-col max-h-[150px] overflow-y-auto">
+    <section className="absolute top-[110%] z-30 border-2 px-2 border-darkGreen rounded-lg w-full flex flex-col max-h-[150px] overflow-y-auto bg-white no-scrollbar">
       {filteredPlants.length > 0 &&
         filteredPlants.map((plant, index) => {
-          return <SearchResultItem key={index} resultTxt={plant.common_name} />;
+          return (
+            <SearchResultItem
+              key={index}
+              resultTxt={plant.common_name}
+              onSetSearchQuery={onSetSearchQuery}
+              setIsSearchResultActive={setIsSearchResultActive}
+            />
+          );
         })}
 
       {filteredPlants.length === 0 && (
@@ -100,9 +125,19 @@ function SearchResultContainer({ searchQuery }) {
 }
 
 // Search Result Item
-function SearchResultItem({ resultTxt }) {
+function SearchResultItem({
+  resultTxt,
+  onSetSearchQuery,
+  setIsSearchResultActive,
+}) {
   return (
-    <div className="flex gap-2 items-center text-sm hover:bg-lightGreen sm:p-2 px-2 rounded-lg cursor-pointer">
+    <div
+      onClick={() => {
+        onSetSearchQuery(resultTxt);
+        setIsSearchResultActive(false);
+      }}
+      className="flex gap-2 items-center text-sm hover:bg-lightGreen sm:p-2 px-2 rounded-lg cursor-pointer"
+    >
       <i className="fa-solid fa-search"></i>
       <p className="py-1.5 text-sm">{resultTxt}</p>
     </div>
