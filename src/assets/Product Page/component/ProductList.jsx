@@ -10,6 +10,7 @@ function ProductList() {
       <ProductCard />
       <ProductCard />
       <ProductCard />
+      <ProductCard />
     </section>
   );
 }
