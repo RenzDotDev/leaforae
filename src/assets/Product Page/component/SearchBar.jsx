@@ -2,51 +2,47 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 import Filters from "./Filters";
-import ProductList from "./ProductList";
+import ProductCard from "./ProductCard";
 
 function SearchBar() {
-  const [isSearchResultActive, setIsSearchResultActive] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [isFilterActive, setIsFilterActive] = useState(false);
   const [plants, setPlants] = useState([]);
-
-  const filteredPlants = plants.filter((plant) =>
-    plant.common_name.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const [filteredPlants, setFilteredPlants] = useState([]);
+  const [visibleCount, setVisibleCount] = useState(10);
 
   const toggleFilter = () => {
     setIsFilterActive((prev) => !prev);
   };
 
-  const toggleSearchResultContainer = () => {
-    setIsSearchResultActive((prev) => !prev);
-  };
-
+  // Fetch plant data once
   useEffect(() => {
     axios.get("/PlantData.json").then((res) => {
       setPlants(res.data.data);
+      setFilteredPlants(res.data.data); // show all plants initially
     });
   }, []);
 
+  // Filter plants when searchQuery changes
   useEffect(() => {
     const timer = setTimeout(() => {
-      if (searchQuery === "") {
-        setIsSearchResultActive(false);
+      if (searchQuery.trim() === "") {
+        setFilteredPlants(plants); // reset to all if search is empty
       } else {
-        setIsSearchResultActive(true);
+        const results = plants.filter((plant) =>
+          plant.common_name.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+        setFilteredPlants(results);
       }
-    }, 1000);
+    }, 1000); // debounce delay
 
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [searchQuery]);
+    return () => clearTimeout(timer);
+  }, [searchQuery, plants]);
 
   return (
-    <section className="grid w-full h-full grid-rows-[10%_90%]">
+    <section className="grid w-full grid-cols-1 grid-rows-[auto_auto]">
       {/* Search Bar */}
-      <section className="flex gap-2 w-full h-full items-center relative">
-        {/* Search Bar */}
+      <section className="flex gap-2 w-full h-fit items-center relative">
         <div className="grow-1 flex items-center gap-1 p-2 rounded-lg border-2 border-darkGreen">
           <i className="fa-solid fa-search text-darkGreen"></i>
           <input
@@ -56,12 +52,12 @@ function SearchBar() {
             placeholder="Search something..."
             className="grow-1 text-sm p-1 outline-0"
           />
-          <i
-            className="fa-solid fa-xmark text-darkGreen text-sm"
-            onClick={() => {
-              setIsSearchResultActive(false), setSearchQuery("");
-            }}
-          ></i>
+          {searchQuery && (
+            <i
+              className="fa-solid fa-xmark text-darkGreen text-sm cursor-pointer"
+              onClick={() => setSearchQuery("")}
+            ></i>
+          )}
         </div>
 
         {/* Filter Button */}
@@ -71,20 +67,34 @@ function SearchBar() {
         >
           <i className="fa-solid fa-sliders text-white text-xs"></i>
         </button>
-
-        {isSearchResultActive && (
-          <SearchResultContainer
-            searchQuery={searchQuery}
-            onSetSearchQuery={setSearchQuery}
-            setIsSearchResultActive={toggleSearchResultContainer}
-            filteredPlants={filteredPlants}
-          />
-        )}
       </section>
 
       {/* Product List */}
-      <section>
-        <ProductList />
+      <section className="no-scrollbar grid grid-cols-2 gap-1.5 gap-y-5 w-full py-3 items-start sm:grid-cols-3 sm:gap-3 md:grid-cols-5">
+        {filteredPlants.length > 0 ? (
+          <>
+            {filteredPlants.slice(0, visibleCount).map((plant, index) => (
+              <ProductCard
+                key={index}
+                productName={plant.common_name}
+                productUrl={plant.default_image.medium_url}
+              />
+            ))}
+
+            {visibleCount < filteredPlants.length && (
+              <div className="w-full flex justify-center mt-3 col-span-full">
+                <button
+                  onClick={() => setVisibleCount((prev) => prev + 10)}
+                  className="text-white border bg-darkGreen px-3 py-1 rounded-md text-sm hover:bg-darkGreen hover:text-white transition"
+                >
+                  Show More
+                </button>
+              </div>
+            )}
+          </>
+        ) : (
+          <NoSearchResult searchQuery={searchQuery} />
+        )}
       </section>
 
       {isFilterActive && (
@@ -96,55 +106,7 @@ function SearchBar() {
 
 export default SearchBar;
 
-// Search Result Container
-function SearchResultContainer({
-  searchQuery,
-  onSetSearchQuery,
-  setIsSearchResultActive,
-  filteredPlants,
-}) {
-  return (
-    <section className="absolute top-[110%] z-30 border-2 px-2 border-darkGreen rounded-lg w-full flex flex-col max-h-[150px] overflow-y-auto bg-white no-scrollbar">
-      {filteredPlants.length > 0 &&
-        filteredPlants.map((plant, index) => {
-          return (
-            <SearchResultItem
-              key={index}
-              resultTxt={plant.common_name}
-              onSetSearchQuery={onSetSearchQuery}
-              setIsSearchResultActive={setIsSearchResultActive}
-            />
-          );
-        })}
-
-      {filteredPlants.length === 0 && (
-        <NoSearchResult searchQuery={searchQuery} />
-      )}
-    </section>
-  );
-}
-
-// Search Result Item
-function SearchResultItem({
-  resultTxt,
-  onSetSearchQuery,
-  setIsSearchResultActive,
-}) {
-  return (
-    <div
-      onClick={() => {
-        onSetSearchQuery(resultTxt);
-        setIsSearchResultActive(false);
-      }}
-      className="flex gap-2 items-center text-sm hover:bg-lightGreen sm:p-2 px-2 rounded-lg cursor-pointer"
-    >
-      <i className="fa-solid fa-search"></i>
-      <p className="py-1.5 text-sm">{resultTxt}</p>
-    </div>
-  );
-}
-
-// No search results
+// No search results component
 function NoSearchResult({ searchQuery }) {
   return (
     <div className="h-150 w-full flex flex-col items-center justify-center p-3">
@@ -153,9 +115,9 @@ function NoSearchResult({ searchQuery }) {
         alt="No Result Illustration"
         className="aspect-square w-25"
       />
-      <p className="text-sm">
-        No result found! for{" "}
-        <span className="text-darkGreen">{searchQuery}</span>
+      <p className="text-sm text-center">
+        No result found for{" "}
+        <span className="text-darkGreen font-semibold">{searchQuery}</span>
       </p>
     </div>
   );
