@@ -73,13 +73,17 @@ function SearchBar() {
       <section className="no-scrollbar grid grid-cols-2 gap-1.5 gap-y-5 w-full py-3 items-start sm:grid-cols-3 sm:gap-3 md:grid-cols-5">
         {filteredPlants.length > 0 ? (
           <>
-            {filteredPlants.slice(0, visibleCount).map((plant, index) => (
-              <ProductCard
-                key={index}
-                productName={plant.common_name}
-                productUrl={plant.default_image.medium_url}
-              />
-            ))}
+            {filteredPlants
+              .slice(0, visibleCount)
+              .map((plant, index) =>
+                plant.default_image?.original_url ? (
+                  <ProductCard
+                    key={index}
+                    productName={plant.common_name}
+                    productUrl={plant.default_image.original_url}
+                  />
+                ) : null
+              )}
 
             {visibleCount < filteredPlants.length && (
               <div className="w-full flex justify-center mt-3 col-span-full">
@@ -109,11 +113,11 @@ export default SearchBar;
 // No search results component
 function NoSearchResult({ searchQuery }) {
   return (
-    <div className="h-150 w-full flex flex-col items-center justify-center p-3">
+    <div className="h-fit w-full flex flex-col items-center justify-center p-3 col-span-full">
       <img
         src="/noSearchResultImage.png"
         alt="No Result Illustration"
-        className="aspect-square w-25"
+        className="aspect-square w-50"
       />
       <p className="text-sm text-center">
         No result found for{" "}
