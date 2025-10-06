@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { motion } from "motion/react";
 
 function ProductCard({ productName, productUrl }) {
   const [isFavorite, setIsFavorite] = useState(false);
@@ -6,7 +7,10 @@ function ProductCard({ productName, productUrl }) {
   const isDiscounted = productName.length % 2 !== 0;
 
   return (
-    <div className="w-full aspect-[2/3] gap-1 flex flex-col">
+    <motion.div
+      className="w-full aspect-[2/3] gap-1 flex flex-col cursor-pointer"
+      whileTap={{ scale: 0.95 }}
+    >
       {/* Image Container */}
       <div
         className="flex justify-between items-start grow-1 bg-cover bg-center p-2 rounded-xl"
@@ -68,7 +72,7 @@ function ProductCard({ productName, productUrl }) {
           </p>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
