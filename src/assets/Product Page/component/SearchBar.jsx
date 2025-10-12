@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 
-function SearchBar({ searchQuery }) {
+import SearchResultList from "./SearchResultList";
+
+function SearchBar({
+  searchQuery,
+  isResultListActive,
+  onSetSearchQuery,
+  onClearSearchQuery,
+}) {
   return (
-    <div className="flex gap-2 items-center justify-between w-full">
+    <div className="flex gap-2 items-center justify-between w-full relative">
       {/* Search Bar */}
       <form
         onSubmit={(e) => e.preventDefault()}
@@ -10,12 +17,16 @@ function SearchBar({ searchQuery }) {
       >
         <i className="fa-solid fa-search text-gray-500 text-sm"></i>
         <input
+          onChange={(e) => onSetSearchQuery(e.target.value)}
           value={searchQuery}
           type="text"
           placeholder="Search something..."
           className="text-sm grow border-0 outline-0"
         />
-        <i className="fa-solid fa-xmark text-gray-500 text-sm"></i>
+        <i
+          onClick={onClearSearchQuery}
+          className="fa-solid fa-xmark text-gray-500 text-sm"
+        ></i>
       </form>
 
       {/* Filter Button */}
@@ -24,6 +35,13 @@ function SearchBar({ searchQuery }) {
           <p className="text-white text-sm hidden sm:block">Filter</p>
           <i className="fa-solid fa-filter text-xs text-white"></i>
         </button>
+      </section>
+
+      <section className="absolute w-full top-[120%]">
+        <SearchResultList
+          isActive={isResultListActive}
+          onSetSearchQuery={onSetSearchQuery}
+        />
       </section>
     </div>
   );
