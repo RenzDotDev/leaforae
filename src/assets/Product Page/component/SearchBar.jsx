@@ -19,10 +19,12 @@ function SearchBar({ searchQuery }) {
       </form>
 
       {/* Filter Button */}
-      <button className="bg-darkGreen aspect-square h-8 rounded-full flex items-center justify-center gap-1 sm:px-3 sm:py-1">
-        <p className="text-white text-sm hidden sm:block">Filter</p>
-        <i className="fa-solid fa-filter text-xs text-white"></i>
-      </button>
+      <section>
+        <button className="bg-darkGreen aspect-square h-8 rounded-full flex items-center justify-center gap-1 sm:px-3 sm:py-1">
+          <p className="text-white text-sm hidden sm:block">Filter</p>
+          <i className="fa-solid fa-filter text-xs text-white"></i>
+        </button>
+      </section>
     </div>
   );
 }
