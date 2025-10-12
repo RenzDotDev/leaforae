@@ -1,16 +1,21 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { useState } from "react";
-import { motion, AnimatePresence, easeIn, easeOut } from "motion/react";
 
-import ProductPageHeader from "./component/ProductPageHeader";
+import ProductHeader from "./component/ProductHeader";
 import SearchBar from "./component/SearchBar";
+import ProductList from "./component/ProductList";
 
 function ProductPage() {
   return (
-    <div className="w-full h-screen grid grid-cols-1 grid-rows-[7%_auto] p-3 gap-2">
-      <ProductPageHeader />
-      <SearchBar />
+    <div className="w-full h-full grid grid-cols-1 grid-rows-[10%_7%_auto] gap-2">
+      <section className="px-3">
+        <ProductHeader />
+      </section>
+      <section className="px-3 flex items-center">
+        <SearchBar />
+      </section>
+      <section className="px-3">
+        <ProductList />
+      </section>
     </div>
   );
 }

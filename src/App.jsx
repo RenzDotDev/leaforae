@@ -14,7 +14,7 @@ import ProfilePage from "./assets/Profile Page/ProfilePage";
 
 function App() {
   return (
-    <div className="w-[100dvw] h-fit max-w-[1440px] min-w-[320px] mx-auto">
+    <div className="w-[100dvw] h-screen max-w-[1440px] min-w-[320px] mx-auto">
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/Product" element={<ProductPage />} />
