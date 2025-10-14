@@ -4,6 +4,7 @@ import axios from "axios";
 function ViewProduct({ plantName, setViewProduct }) {
   const [plantList, setPlantList] = useState([]);
   const [quantity, setQuantity] = useState(0);
+  const [isFavorite, setIsFavorite] = useState(false);
 
   let plantToShow;
 
@@ -29,18 +30,22 @@ function ViewProduct({ plantName, setViewProduct }) {
       <section className="no-scrollbar w-[90%] sm:max-w-[50%] lg:max-w-[30%] h-fit bg-darkGreen rounded-2xl p-3 text-white overflow-scroll">
         {plantToShow.slice(0, 1).map((plant, index) => (
           <div key={index} className="no-scrollbar flex flex-col gap-3">
+            {/* Exit Button */}
             <button
               onClick={() => setViewProduct((prev) => !prev)}
               className="h-10 aspect-square bg-green w-fit rounded-full self-end cursor-pointer"
             >
               <i className="fa-solid fa-xmark"></i>
             </button>
+
+            {/* Plant Image */}
             <img
               src={plant.default_image.original_url}
               className="aspect-square w-full object-cover rounded-2xl"
               alt=""
             />
 
+            {/* Plant Details */}
             <section className="flex flex-col gap-1">
               <p className="text-lg">{plant.common_name}</p>
               <p className="text-xs text-[#adadadd5]">{`Scientific Name: ${plant.scientific_name}`}</p>
@@ -64,13 +69,14 @@ function ViewProduct({ plantName, setViewProduct }) {
               </div>
             </section>
 
+            {/* Action Buttons */}
             <section className="flex items-center h-fit w-full gap-1">
               {/* Quantity Counter */}
               <div className="grow flex gap-2 mr-5">
                 <button
                   onClick={() => setQuantity(quantity - 1)}
                   disabled={quantity === 0 ? true : false}
-                  className="flex items-center justify-center gap-1 bg-green h-8 aspect-square rounded-full cursor-pointer disabled:opacity-50 disabled:bg-gray-500 disabled:cursor-not-allowed"
+                  className="flex items-center justify-center gap-1 bg-green h-8 aspect-square rounded-full cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <i className="fa-solid fa-minus"></i>
                 </button>
@@ -91,8 +97,17 @@ function ViewProduct({ plantName, setViewProduct }) {
               <button className="flex items-center justify-center gap-1 bg-green h-10 aspect-square rounded-full">
                 <i className="fa-solid fa-cart-plus"></i>
               </button>
-              <button className="flex items-center justify-center gap-1 bg-green h-10 aspect-square rounded-full">
-                <i className="fa-regular fa-heart"></i>
+              <button
+                className="bg-green aspect-square h-10 rounded-full cursor-pointer"
+                onClick={() => setIsFavorite((prev) => !prev)}
+              >
+                <i
+                  className={`${
+                    isFavorite
+                      ? "fa-solid fa-heart text-red-400"
+                      : "fa-regular fa-heart text-white"
+                  } `}
+                ></i>
               </button>
             </section>
           </div>

@@ -90,7 +90,7 @@ function ProductPage() {
         </section>
       )}
 
-      {isViewProductActive > 0 && (
+      {isViewProductActive && (
         <ViewProduct
           plantName={viewProduct}
           setViewProduct={() => setIsViewProductAcitve((prev) => !prev)}

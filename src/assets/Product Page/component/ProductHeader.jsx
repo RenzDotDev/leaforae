@@ -20,12 +20,6 @@ function ProductHeader() {
       {/* Button Container */}
       <section className="flex gap-0.5">
         <Link
-          to={"/Favorite"}
-          className="bg-darkGreen aspect-square h-8 rounded-full flex items-center justify-center"
-        >
-          <i className="fa-solid fa-heart text-xs text-white"></i>
-        </Link>
-        <Link
           to={"/Cart"}
           className="bg-darkGreen aspect-square h-8 rounded-full flex items-center justify-center"
         >
