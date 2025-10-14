@@ -12,7 +12,7 @@ function SearchBar({
       {/* Search Bar */}
       <form
         onSubmit={(e) => e.preventDefault()}
-        className="flex items-center justify-between gap-1 border-2 border-darkGreen grow p-2 rounded-lg"
+        className="flex items-center justify-between gap-1 border-2 border-darkGreen w-[90%] p-2 rounded-lg"
       >
         <button
           onClick={onSearch}
@@ -34,7 +34,7 @@ function SearchBar({
       </form>
 
       {/* Filter Button */}
-      <section>
+      <section className="w-[10%]">
         <button
           onClick={onCloseFilterContainer}
           className="bg-darkGreen aspect-square h-8 rounded-full flex items-center justify-center gap-1 sm:px-3 sm:py-1"

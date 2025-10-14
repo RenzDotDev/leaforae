@@ -3,6 +3,7 @@ import axios from "axios";
 
 function ViewProduct({ plantName, setViewProduct }) {
   const [plantList, setPlantList] = useState([]);
+  const [quantity, setQuantity] = useState(0);
 
   let plantToShow;
 
@@ -24,13 +25,13 @@ function ViewProduct({ plantName, setViewProduct }) {
   console.log(plantToShow);
 
   return (
-    <div className="fixed flex items-center justify-center w-full h-full bg-[#40404050]">
-      <section className="w-[90%] h-fit bg-darkGreen rounded-2xl p-3 text-white overflow-scroll">
+    <div className="fixed top-0 left-0 flex items-center justify-center w-full h-full bg-[#40404050]">
+      <section className="no-scrollbar w-[90%] sm:max-w-[50%] lg:max-w-[30%] h-fit bg-darkGreen rounded-2xl p-3 text-white overflow-scroll">
         {plantToShow.slice(0, 1).map((plant, index) => (
           <div key={index} className="no-scrollbar flex flex-col gap-3">
             <button
               onClick={() => setViewProduct((prev) => !prev)}
-              className="h-10 aspect-square bg-green w-fit rounded-full self-end"
+              className="h-10 aspect-square bg-green w-fit rounded-full self-end cursor-pointer"
             >
               <i className="fa-solid fa-xmark"></i>
             </button>
@@ -66,14 +67,22 @@ function ViewProduct({ plantName, setViewProduct }) {
             <section className="flex items-center h-fit w-full gap-1">
               {/* Quantity Counter */}
               <div className="grow flex gap-2 mr-5">
-                <button className="flex items-center justify-center gap-1 bg-green h-8 aspect-square rounded-full">
+                <button
+                  onClick={() => setQuantity(quantity - 1)}
+                  disabled={quantity === 0 ? true : false}
+                  className="flex items-center justify-center gap-1 bg-green h-8 aspect-square rounded-full cursor-pointer disabled:opacity-50 disabled:bg-gray-500 disabled:cursor-not-allowed"
+                >
                   <i className="fa-solid fa-minus"></i>
                 </button>
                 <input
+                  value={quantity}
                   type="text"
                   className="w-[20px] grow bg-white text-black rounded-2xl outline-0 text-center px-2"
                 />
-                <button className="flex items-center justify-center gap-1 bg-green h-8 aspect-square rounded-full">
+                <button
+                  onClick={() => setQuantity(quantity + 1)}
+                  className="flex items-center justify-center gap-1 bg-green h-8 aspect-square rounded-full cursor-pointer"
+                >
                   <i className="fa-solid fa-plus"></i>
                 </button>
               </div>

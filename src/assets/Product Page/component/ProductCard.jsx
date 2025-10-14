@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 function ProductCard({
@@ -7,6 +7,8 @@ function ProductCard({
   setViewProduct,
   toggleViewProduct,
 }) {
+  const [isFavorite, setIsFavorite] = useState(false);
+
   let isDiscounted = plantName.length % 2 == 0 ? true : false;
   let originalPrice = ((plantName.length / 0.8) * 0.5).toFixed(2);
   let discount = (plantName.length * 0.1).toFixed(2) / 0.5;
@@ -34,18 +36,27 @@ function ProductCard({
 
         {/* Action Button (Add to Favorite & Cart) */}
         <div className="flex flex-col gap-1">
-          <button className="bg-darkGreen aspect-square h-8 rounded-full">
-            <i className="fa-regular fa-heart text-white text-sm"></i>
+          <button
+            className="bg-darkGreen aspect-square h-8 rounded-full cursor-pointer"
+            onClick={() => setIsFavorite((prev) => !prev)}
+          >
+            <i
+              className={`${
+                isFavorite
+                  ? "fa-solid fa-heart text-red-400"
+                  : "fa-regular fa-heart text-white"
+              } text-sm`}
+            ></i>
           </button>
-          <button className="bg-darkGreen aspect-square h-8 rounded-full">
+          <button className="bg-darkGreen aspect-square h-8 rounded-full cursor-pointer">
             <i className="fa-solid fa-cart-plus text-white text-sm"></i>
           </button>
           <button
+            className="flex items-center justify-center bg-darkGreen aspect-square h-8 rounded-full cursor-pointer"
             onClick={() => {
               setViewProduct(plantName);
               toggleViewProduct(true);
             }}
-            className="flex items-center justify-center bg-darkGreen aspect-square h-8 rounded-full"
           >
             <i className="fa-solid fa-eye text-white text-sm"></i>
           </button>
