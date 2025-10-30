@@ -5,7 +5,7 @@ function ProductHeader() {
   return (
     <div className="w-full h-full flex justify-between items-center">
       {/* Profile Button Container */}
-      <Link to={"/Profile"} className="flex items-center gap-1 h-full">
+      <Link to={""} className="flex items-center gap-1 h-full">
         <img
           src="/isabellaFlores.jpg"
           className="h-12 object-cover aspect-square rounded-full"
